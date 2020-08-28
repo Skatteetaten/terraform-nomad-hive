@@ -15,6 +15,15 @@ variable "nomad_namespace" {
   default     = "default"
 }
 
+# mode
+# Switch between nomad jobs
+# hive_local.hcl job uses local docker image
+# hive.hcl job uses remote docker image available on dockerhub
+variable "nomad_job_switch_local" {
+  type        = bool
+  description = "Switch for nomad job"
+}
+
 # Hive
 variable "hive_service_name" {
   type        = string
@@ -26,6 +35,11 @@ variable "hive_container_port" {
   type        = number
   description = "Hive port"
   default     = 9083
+}
+variable "hive_docker_image" {
+  type        = string
+  description = "Hive docker image"
+  default     = "fredrikhgrelland/hive:3.1.0"
 }
 
 variable "hive_container_environment_variables" {

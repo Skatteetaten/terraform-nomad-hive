@@ -83,12 +83,22 @@ job "${service_name}" {
 
     task "metastoreserver" {
       driver = "docker"
-
-      config {
-        image = "${image}"
-        command = "hivemetastore"
+# todo: optional rendering START (docker image may be already available in registry)
+      artifact {
+        // vagrant-hashistack:minio
+        source = "s3::http://127.0.0.1:9000/dev/tmp/hive_local.tar"
+        options {
+          aws_access_key_id     = "minioadmin"
+          aws_access_key_secret = "minioadmin"
+        }
       }
 
+      config {
+        load = "hive_local.tar"
+        image = "fredrikhgrelland/hive:local"
+        command = "hivemetastore"
+      }
+# todo: optional rendering END
       resources {
         cpu = 500
         memory = 1024

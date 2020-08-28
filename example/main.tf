@@ -45,9 +45,12 @@ module "hive" {
   nomad_datacenters = ["dc1"]
   nomad_namespace = "default"
 
+  nomad_job_switch_local = false
+
   # hive
   hive_service_name = "hive-metastore"
   hive_container_port = 9083
+  hive_docker_image = "fredrikhgrelland/hive:3.1.0"
   hive_container_environment_variables = ["SOME_EXAMPLE=example-value"]
 
   # hive - minio
