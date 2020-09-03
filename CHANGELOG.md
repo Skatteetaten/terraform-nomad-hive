@@ -1,5 +1,7 @@
 # Changelog
 
+## [0.0.3 UNRELEASED]
+
 ## [0.0.2]
 
 ### Fixed
