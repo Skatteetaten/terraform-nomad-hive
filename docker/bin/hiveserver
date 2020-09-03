@@ -1,5 +1,5 @@
 #!/bin/bash
 
-cd $HIVE_HOME/bin
+cd "$HIVE_HOME"/bin || exit
 ./hiveserver2 --hiveconf hive.server2.enable.doAs=false
 
