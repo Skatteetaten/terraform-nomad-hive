@@ -119,7 +119,13 @@ CORE_CONF_fs_s3a_endpoint = "http://{{ env "NOMAD_UPSTREAM_ADDR_${minio_service_
 CORE_CONF_fs_s3a_path_style_access = true
 EOH
       }
-
+      template {
+        destination = "local/additional.env"
+        env = true
+        data = <<EOH
+${envs}
+EOH
+      }
       template {
         destination = "secrets/.env"
         env = true
