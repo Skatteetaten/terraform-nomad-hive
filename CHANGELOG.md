@@ -2,6 +2,10 @@
 
 ## [0.0.3 UNRELEASED]
 
+### Added
+
+- Healthcheck test
+
 ## [0.0.2]
 
 ### Fixed

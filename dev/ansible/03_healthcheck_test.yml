@@ -1,0 +1,12 @@
+- name: Hive metastore healthcheck pass
+  uri:
+    url: http://localhost:8500/v1/health/checks/hive-metastore?filter={{ '(Status=="passing")' | urlencode }}
+    method: GET
+    return_content: yes
+    status_code: 200
+    body_format: json
+  register: result_hive
+  retries: 15
+  delay: 15
+  until: result_hive.json | length == 1
+  tags: test
