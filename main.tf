@@ -11,7 +11,7 @@ locals {
   template_local_docker_image   = file("${path.module}/conf/nomad/hive_local.hcl")
 }
 
-data "template_file" "template-nomad-job-hive" {
+data "template_file" "template_nomad_job_hive" {
 
   template = var.nomad_job_switch_local ? local.template_local_docker_image : local.template_remote_docker_image
 
@@ -42,7 +42,7 @@ data "template_file" "template-nomad-job-hive" {
   }
 }
 
-resource "nomad_job" "nomad-job-hive" {
-  jobspec = data.template_file.template-nomad-job-hive.rendered
+resource "nomad_job" "nomad_job_hive" {
+  jobspec = data.template_file.template_nomad_job_hive.rendered
   detach  = false
 }
