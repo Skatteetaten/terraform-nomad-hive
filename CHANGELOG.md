@@ -6,6 +6,11 @@
 
 - Healthcheck test
 
+## Changed
+
+- Bump vagrant-hashistack version #14
+- Sync origin template #16
+
 ## [0.0.2]
 
 ### Fixed
