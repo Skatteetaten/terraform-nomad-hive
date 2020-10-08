@@ -5,6 +5,23 @@
     return_content: yes
     status_code: 200
     body_format: json
+  when: not lookup('env', 'consul_acl') | bool
+  register: result_hive
+  retries: 15
+  delay: 15
+  until: result_hive.json | length == 1
+  tags: test
+
+- name: Hive metastore healthcheck pass with token
+  uri:
+    url: http://localhost:8500/v1/health/checks/hive-metastore?filter={{ '(Status=="passing")' | urlencode }}
+    method: GET
+    headers:
+      X-Consul-Token: "{{ consul_token }}"
+    return_content: yes
+    status_code: 200
+    body_format: json
+  when: lookup('env', 'consul_acl') | bool and lookup('env', 'consul_acl_default_policy') == 'deny'
   register: result_hive
   retries: 15
   delay: 15
