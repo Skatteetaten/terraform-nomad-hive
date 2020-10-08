@@ -4,5 +4,6 @@ output "service_name" {
 }
 
 output "buckets" {
+  description = "Minio buckets for hive"
   value = local.buckets
 }
