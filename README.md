@@ -3,7 +3,7 @@
 
 
 # Terraform-nomad-hive
-This module is IaC - infrastructure as code which contains a nomad job of [hive](https://hive.apache.org/.
+This module is IaC - infrastructure as code which contains a nomad job of [hive](https://hive.apache.org/).
 
 ## Content
 1. [Usage](#usage)
