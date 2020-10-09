@@ -5,11 +5,13 @@
 ### Added
 
 - Healthcheck test
+- Added documentation #3
 
 ## Changed
 
 - Bump vagrant-hashistack version #14
 - Sync origin template #16
+- Bump mino and postgres version #20
 
 ## [0.0.2]
 

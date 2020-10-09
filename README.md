@@ -3,7 +3,7 @@
 
 
 # Terraform-nomad-hive
-TODO
+This module is IaC - infrastructure as code which contains a nomad job of [hive](https://hive.apache.org/.
 
 ## Content
 1. [Usage](#usage)
@@ -18,7 +18,7 @@ TODO
 7. [License](#license)
 
 ## Usage
-The following command will run a instance of hive found in the [example](/example) folder. 
+The following command will run a instance of hive found in the [example](/example) folder.
 ```sh
 make test
 ```
