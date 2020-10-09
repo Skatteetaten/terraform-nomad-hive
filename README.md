@@ -145,7 +145,7 @@ module "hive" {
 ```
 
 ### Verifying setup
-You can verify the setup by connection to minio with a consul proxy. Check out the [required software](#required-software) section. 
+You can verify the setup by connection to minio with a consul proxy. Check out the [required software](#required-software) section.
 ```sh
 make proxy-to-minio
 ```
