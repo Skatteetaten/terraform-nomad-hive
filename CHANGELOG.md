@@ -6,6 +6,7 @@
 
 - Healthcheck test
 - Added documentation #3
+- Code to support successful execution of nomad hive job and tests when consul_acl_default_policy is deny #19
 
 ## Changed
 
