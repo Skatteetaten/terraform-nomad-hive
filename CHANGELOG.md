@@ -1,14 +1,14 @@
 # Changelog
 
-## [0.0.3 UNRELEASED]
+## [0.1.0]
 
 ### Added
 
-- Healthcheck test
+- Healthcheck test #4
 - Added documentation #3
 - Code to support successful execution of nomad hive job and tests when consul_acl_default_policy is deny #19
 
-## Changed
+### Changed
 
 - Bump vagrant-hashistack version #14
 - Sync origin template #16
