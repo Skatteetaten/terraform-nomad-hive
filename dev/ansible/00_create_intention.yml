@@ -20,7 +20,7 @@
 
 #*************************************************************************************************#
 # hive-metastore => postgres (allow),
-#  hive-metastore => minio (allow)
+# hive-metastore => minio (allow)
 #*************************************************************************************************#
 - name: Check if intentions from hive-metastore exist
   shell: consul intention match -source hive-metastore
