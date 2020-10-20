@@ -1,6 +1,6 @@
 - name: set variable
   set_fact:
-    consul_token: "master"
+    consul_token: "{{ lookup('env', 'consul_master_token') }}"
 
 #*************************************************************************************************#
 # mc => minio (allow)
@@ -9,6 +9,8 @@
   shell: consul intention match -source mc
   register: mc_intention
   when: lookup('env', 'consul_acl') | bool and lookup('env', 'consul_acl_default_policy') == 'deny'
+  environment:
+    CONSUL_HTTP_TOKEN: "{{ consul_token }}"
 
 - name: Consul create intention mc => minio (allow)
   shell: consul intention create mc minio
@@ -17,17 +19,24 @@
     CONSUL_HTTP_TOKEN: "{{ consul_token }}"
 
 #*************************************************************************************************#
-# hive-metastore => postgres (allow),hive-metastore => minio (allow)
+# hive-metastore => postgres (allow),
+#  hive-metastore => minio (allow)
 #*************************************************************************************************#
 - name: Check if intentions from hive-metastore exist
   shell: consul intention match -source hive-metastore
   register: hive_metastore_intention
   when: lookup('env', 'consul_acl') | bool and lookup('env', 'consul_acl_default_policy') == 'deny'
+  environment:
+    CONSUL_HTTP_TOKEN: "{{ consul_token }}"
 
-- name: Consul create intention hive-metastore => postgres (allow),hive-metastore => minio (allow)
-  shell: |
-      consul intention create hive-metastore postgres
-      consul intention create hive-metastore minio
+- name: Consul create intention hive-metastore => postgres (allow)
+  shell: consul intention create hive-metastore postgres
+  when: lookup('env', 'consul_acl') | bool and lookup('env', 'consul_acl_default_policy') == 'deny' and hive_metastore_intention.stdout_lines == []
+  environment:
+    CONSUL_HTTP_TOKEN: "{{ consul_token }}"
+
+- name: Consul create intention hive-metastore => minio (allow)
+  shell: consul intention create hive-metastore minio
   when: lookup('env', 'consul_acl') | bool and lookup('env', 'consul_acl_default_policy') == 'deny' and hive_metastore_intention.stdout_lines == []
   environment:
     CONSUL_HTTP_TOKEN: "{{ consul_token }}"
