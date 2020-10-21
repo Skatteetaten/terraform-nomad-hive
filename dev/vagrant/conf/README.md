@@ -28,5 +28,5 @@ There are two primary cases for customization.
 
 ### Add pre and post bootstrap tasks
 
-- [pre bootstrap example](../bootstrap/consul/pre/510-prestart-example.yml)
-- [post bootstrap example](../bootstrap/consul/post/510-poststart-example.yml)
+- [pre bootstrap example](https://github.com/fredrikhgrelland/vagrant-hashistack-template/blob/master/template_example/dev/vagrant/bootstrap/consul/pre/510-prestart-example.yml)
+- [post bootstrap example](https://github.com/fredrikhgrelland/vagrant-hashistack-template/blob/master/template_example/dev/vagrant/bootstrap/consul/post/510-poststart-example.yml)
