@@ -5,6 +5,12 @@
 ### Added
 
 - Github templates for issues and PRs #29
+- Update box ~> 0.6.1 #31
+- Automate release process #26
+
+### Changed
+
+- Sync origin template #27
 
 ## [0.1.0]
 
