@@ -12,4 +12,4 @@ The files e.g. 0-example.yml must only include pure ansible task syntax:
     msg: This would be a prestart task
 ```
 
-See [example](../../../../template_example/dev/vagrant/conf/pre_bootstrap/00-prestart-example.yml)
+See [example](https://github.com/fredrikhgrelland/vagrant-hashistack-template/blob/master/template_example/dev/vagrant/conf/consul/99-override.hcl)
