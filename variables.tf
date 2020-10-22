@@ -10,13 +10,10 @@ variable "nomad_namespace" {
   default     = "default"
 }
 
-# mode
-# Switch between nomad jobs
-# hive_local.hcl job uses local docker image
-# hive.hcl job uses remote docker image available on dockerhub
-variable "nomad_job_switch_local" {
+variable "local_docker_image" {
   type        = bool
-  description = "Switch for nomad job"
+  description = "Switch for nomad jobs to use artifact for image lookup"
+  default     = false
 }
 
 # Hive

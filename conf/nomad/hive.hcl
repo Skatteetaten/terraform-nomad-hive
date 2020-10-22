@@ -84,8 +84,21 @@ job "${service_name}" {
     task "metastoreserver" {
       driver = "docker"
 
+%{ if local_docker_image }
+      artifact {
+        source = "s3::http://127.0.0.1:9000/dev/tmp/hive_local.tar"
+        options {
+          aws_access_key_id     = "minioadmin"
+          aws_access_key_secret = "minioadmin"
+        }
+      }
+      config {
+        load = "hive_local.tar"
+        image = "hive_local_image:local"
+%{ else }
       config {
         image = "${image}"
+%{ endif }
         command = "hivemetastore"
       }
 

@@ -11,6 +11,7 @@
 ### Changed
 
 - Sync origin template #27
+- Conditional rendering for docker image #9
 
 ## [0.1.0]
 
