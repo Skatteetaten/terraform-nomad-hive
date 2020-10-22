@@ -6,21 +6,19 @@ locals {
       "JUST_EXAMPLE_ENV=some-value",
     ], var.hive_container_environment_variables)
   )
-
-  template_remote_docker_image  = file("${path.module}/conf/nomad/hive.hcl")
-  template_local_docker_image   = file("${path.module}/conf/nomad/hive_local.hcl")
 }
 
 data "template_file" "template_nomad_job_hive" {
 
-  template = var.nomad_job_switch_local ? local.template_local_docker_image : local.template_remote_docker_image
+  template = file("${path.module}/conf/nomad/hive.hcl")
 
   vars      = {
     service_name              = var.hive_service_name
     datacenters               = local.datacenters
     namespace                 = var.nomad_namespace
 
-    image                     = var.hive_docker_image # !NB: no affect to `hive_local.hcl`
+    local_docker_image        = var.local_docker_image
+    image                     = var.hive_docker_image # !NB: no affect when `local_docker_image=true`
     port                      = var.hive_container_port
     envs                      = local.hive_env_vars
 

@@ -37,7 +37,7 @@ make test
 |------|-------------|------|---------|:--------:|
 | nomad\_datacenters | Nomad data centers | list(string) | ["dc1"] | no |
 | nomad\_namespace | [Enterprise] Nomad namespace | string | "default" | no |
-| nomad_job_switch_local | Switch for nomad job | bool | - | yes |
+| local_docker_image | Switch for nomad job | bool | - | yes |
 | hive_service_name | Hive service name | string | "hive-metastore" | no |
 | hive_container_port | Hive container port | number | 9083 | no |
 | hive_docker_image | Hive container image | string | "fredrikhgrelland/hive:3.1.0" | no |
@@ -108,7 +108,7 @@ module "hive" {
   # nomad
   nomad_datacenters      = ["dc1"]
   nomad_namespace        = "default"
-  nomad_job_switch_local = false
+  local_docker_image     = false
 
   # hive
   hive_service_name                    = "hive-metastore"
