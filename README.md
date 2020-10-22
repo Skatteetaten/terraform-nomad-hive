@@ -37,15 +37,15 @@ make test
 |------|-------------|------|---------|:--------:|
 | nomad\_datacenters | Nomad data centers | list(string) | ["dc1"] | no |
 | nomad\_namespace | [Enterprise] Nomad namespace | string | "default" | no |
-| local_docker_image | Switch for nomad job | bool | - | yes |
+| local\_docker\_image | Switch for nomad job | bool | - | yes |
 | use\_canary | Uses canary deployment for Hive | bool | false | no |
-| hive_service_name | Hive service name | string | "hive-metastore" | no |
-| hive_container_port | Hive container port | number | 9083 | no |
-| hive_docker_image | Hive container image | string | "fredrikhgrelland/hive:3.1.0" | no |
-| hive_container_environment_variables | Hive environment variables | list(string) | [""] | no |
-| hive_bucket | Hive requires minio buckets | obj(string) |  { default = string, hive = string } | no |
-| minio_service | Minio data-object contains service_name, port, access_key and secret_key | obj(string) | { service_name = string, port = number, access_key = string, secret_key = string } | no |
-| postgres_service | Postgres data-object contains service_name, port, database_name, username and password | obj(string) | { service_name  = string, port = number, database_name = string, username = string, password = string } | no |
+| hive\_service\_name | Hive service name | string | "hive-metastore" | no |
+| hive\_container\_port | Hive container port | number | 9083 | no |
+| hive\_docker\_image | Hive container image | string | "fredrikhgrelland/hive:3.1.0" | no |
+| hive\_container\_environment\_variables | Hive environment variables | list(string) | [""] | no |
+| hive\_bucket | Hive requires minio buckets | obj(string) |  { default = string, hive = string } | no |
+| minio\_service | Minio data-object contains service_name, port, access_key and secret_key | obj(string) | { service_name = string, port = number, access_key = string, secret_key = string } | no |
+| postgres\_service | Postgres data-object contains service_name, port, database_name, username and password | obj(string) | { service_name  = string, port = number, database_name = string, username = string, password = string } | no |
 
 ## Outputs
 | Name | Description | Type |
