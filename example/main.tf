@@ -47,6 +47,7 @@ module "hive" {
   local_docker_image = false
 
   # hive
+  use_canary                           = false
   hive_service_name                    = "hive-metastore"
   hive_container_port                  = 9083
   hive_docker_image                    = "fredrikhgrelland/hive:3.1.0"

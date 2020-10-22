@@ -13,6 +13,7 @@ data "template_file" "template_nomad_job_hive" {
   template = file("${path.module}/conf/nomad/hive.hcl")
 
   vars      = {
+    use_canary                = var.use_canary
     service_name              = var.hive_service_name
     datacenters               = local.datacenters
     namespace                 = var.nomad_namespace
