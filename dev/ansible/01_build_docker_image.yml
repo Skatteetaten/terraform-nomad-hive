@@ -7,7 +7,7 @@
 
 - name: Build docker image
   docker_image:
-    name: fredrikhgrelland/hive
+    name: hive_local_image
     tag: local
     build:
       path: /vagrant/docker
@@ -26,7 +26,7 @@
 
 - name: Archive docker image
   docker_image:
-    name: fredrikhgrelland/hive
+    name: hive_local_image
     tag: local
     archive_path: /vagrant/dev/tmp/hive_local.tar
     source: local
