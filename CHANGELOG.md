@@ -15,6 +15,8 @@
 
 - Sync origin template #27
 - Conditional rendering for docker image #9
+- Bump example module: minio ~> 0.2.0 #34
+- Bump example module: postgres ~> 0.2.0 #34
 
 ## [0.1.0]
 
