@@ -105,8 +105,8 @@ job "${service_name}" {
       }
 
       resources {
-        cpu = 500
-        memory = 1024
+        cpu = "${cpu}"
+        memory = "${memory}"
       }
 
       logs {

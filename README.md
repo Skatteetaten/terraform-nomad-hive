@@ -43,6 +43,9 @@ make test
 | hive\_container\_port | Hive container port | number | 9083 | no |
 | hive\_docker\_image | Hive container image | string | "fredrikhgrelland/hive:3.1.0" | no |
 | hive\_container\_environment\_variables | Hive environment variables | list(string) | [""] | no |
+| resource | Resource allocations | object |  | no |
+| resource.cpu | Resource allocation - cpu | number | 500 | no |
+| resource.memory | Resource allocation - memory | number | 1024 | no |
 | hive\_bucket | Hive requires minio buckets | obj(string) |  { default = string, hive = string } | no |
 | minio\_service | Minio data-object contains service_name, port, access_key and secret_key | obj(string) | { service_name = string, port = number, access_key = string, secret_key = string } | no |
 | postgres\_service | Postgres data-object contains service_name, port, database_name, username and password | obj(string) | { service_name  = string, port = number, database_name = string, username = string, password = string } | no |
@@ -79,6 +82,10 @@ module "minio" {
   secret_key                      = "minio123"
   buckets                         = ["default", "hive"]
   container_environment_variables = ["JUST_EXAMPLE_VAR1=some-value", "ANOTHER_EXAMPLE2=some-other-value"]
+  resource = {
+    cpu     = 500,
+    memory  = 1024
+  }
 
   # mc
   mc_service_name                    = "mc"

@@ -8,6 +8,7 @@
 - Update box ~> 0.6.1 #31
 - Automate release process #26
 - Added switch for canary deployment #11
+- Resource allocation variables #37
 
 ### Changed
 
