@@ -175,9 +175,9 @@ OK
 
 Create table `iris`
 ```sql
-CREATE EXTERNAL TABLE iris (sepal_length DECIMAL, sepal_width DECIMAL, 
-petal_length DECIMAL, petal_width DECIMAL, species STRING) 
-ROW FORMAT DELIMITED 
+CREATE EXTERNAL TABLE iris (sepal_length DECIMAL, sepal_width DECIMAL,
+petal_length DECIMAL, petal_width DECIMAL, species STRING)
+ROW FORMAT DELIMITED
 FIELDS TERMINATED BY ','
 LINES TERMINATED BY '\n'
 LOCATION 's3a://hive/some/prefix/'
