@@ -40,3 +40,19 @@
   when: lookup('env', 'consul_acl') | bool and lookup('env', 'consul_acl_default_policy') == 'deny' and hive_metastore_intention.stdout_lines == []
   environment:
     CONSUL_HTTP_TOKEN: "{{ consul_token }}"
+
+#*************************************************************************************************#
+# minio-local => minio (allow)
+#*************************************************************************************************#
+- name: Check if intention minio-local => minio (allow) exists
+  shell: consul intention match -source minio-local
+  register: minio_local_intention
+  when: lookup('env', 'consul_acl') | bool and lookup('env', 'consul_acl_default_policy') == 'deny'
+  environment:
+    CONSUL_HTTP_TOKEN: "{{ consul_token }}"
+
+- name: Consul create intention minio-local => minio (allow)
+  shell: consul intention create minio-local minio
+  when: lookup('env', 'consul_acl') | bool and lookup('env', 'consul_acl_default_policy') == 'deny' and minio_local_intention.stdout_lines == []
+  environment:
+    CONSUL_HTTP_TOKEN: "{{ consul_token }}"

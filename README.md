@@ -15,6 +15,7 @@ This module is IaC - infrastructure as code which contains a nomad job of [hive]
 5. [Modes](#modes)
 6. [Example usage](#example-usage)
     1. [Verifying setup](#verifying-setup)
+        1. [Data example upload](#data-example-upload)
 7. [License](#license)
 
 ## Usage
@@ -167,6 +168,25 @@ OK
 +----------------+
 | default        |
 +----------------+
+```
+
+#### Data example upload
+The [example/resources/data](example/resources/data) directory contains a data sample that is uploaded via the [dev/ansible/04_upload_files.yml](dev/ansible/04_upload_files.yml) playbook.
+To create tables and do queries you can use the [beeline cli](https://cwiki.apache.org/confluence/display/Hive/HiveServer2+Clients#HiveServer2Clients-Beeline%E2%80%93CommandLineShell), see the sql-example bellow. However, if you're not familiar with the `beeline-cli`, see the [verifying setup](#verifying-setup) section.
+
+Create table `iris`
+```sql
+CREATE EXTERNAL TABLE iris (sepal_length DECIMAL, sepal_width DECIMAL,
+petal_length DECIMAL, petal_width DECIMAL, species STRING)
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY ','
+LINES TERMINATED BY '\n'
+LOCATION 's3a://hive/some/prefix/'
+TBLPROPERTIES ("skip.header.line.count"="1");
+```
+Query table `iris`
+```sql
+SELECT * FROM default.iris LIMIT 10;
 ```
 
 ## License
