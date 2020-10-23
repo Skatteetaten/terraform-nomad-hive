@@ -9,6 +9,7 @@
 - Automate release process #26
 - Added switch for canary deployment #11
 - Resource allocation variables #37
+- Data example upload #5
 
 ### Changed
 
