@@ -4,7 +4,7 @@ module "minio" {
   # nomad
   nomad_datacenters = ["dc1"]
   nomad_namespace   = "default"
-  nomad_host_volume = "persistence"
+  nomad_host_volume = "persistence-minio"
 
   # minio
   service_name                    = "minio"
