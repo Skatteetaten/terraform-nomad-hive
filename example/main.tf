@@ -52,6 +52,10 @@ module "hive" {
   hive_container_port                  = 9083
   hive_docker_image                    = "fredrikhgrelland/hive:3.1.0"
   hive_container_environment_variables = ["SOME_EXAMPLE=example-value"]
+  resource = {
+    cpu     = 500,
+    memory  = 1024
+  }
 
   # hive - minio
   hive_bucket = {

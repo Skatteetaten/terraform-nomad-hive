@@ -54,6 +54,18 @@ variable "hive_bucket" {
   description = "Hive requires minio buckets"
 }
 
+variable "resource" {
+  type = object({
+    cpu     = number,
+    memory  = number
+  })
+  default = {
+    cpu     = 500,
+    memory  = 1024
+  }
+  description = "Hive resources"
+}
+
 # Minio
 variable "minio_service" {
   type = object({

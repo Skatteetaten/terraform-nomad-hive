@@ -23,6 +23,9 @@ data "template_file" "template_nomad_job_hive" {
     port                      = var.hive_container_port
     envs                      = local.hive_env_vars
 
+    cpu                       = var.resource.cpu
+    memory                    = var.resource.memory
+
     hive_bucket               = var.hive_bucket.hive
     default_bucket            = var.hive_bucket.default
 
