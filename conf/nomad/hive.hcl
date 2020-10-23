@@ -5,15 +5,17 @@ job "${service_name}" {
   namespace = "${namespace}"
 
   update {
-    max_parallel = 1
-    health_check = "checks"
-    min_healthy_time = "10s"
-    healthy_deadline = "10m"
-    progress_deadline = "12m"
-    auto_revert = true
-    auto_promote = true
-    canary = 1
-    stagger = "30s"
+    max_parallel      = 1
+    health_check      = "checks"
+    min_healthy_time  = "10s"
+    healthy_deadline  = "12m"
+    progress_deadline = "15m"
+%{ if use_canary }
+    canary            = 1
+    auto_promote      = true
+    auto_revert       = true
+%{ endif }
+    stagger           = "30s"
   }
 
   group "metastoreserver" {

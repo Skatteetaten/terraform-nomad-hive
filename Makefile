@@ -1,16 +1,8 @@
-# todo: refactor
-LAST_COMMIT_HASH = $(shell git rev-parse --verify HEAD)
-
 include dev/.env
 export PATH := $(shell pwd)/tmp:$(PATH)
 
 .ONESHELL .PHONY: up update-box destroy-box remove-tmp clean example
 .DEFAULT_GOAL := up
-
-#### Development ####
-# start commands
-dev: update-box
-	SSL_CERT_FILE=${SSL_CERT_FILE} CURL_CA_BUNDLE=${CURL_CA_BUNDLE} ANSIBLE_ARGS='--skip-tags "test"' vagrant up --provision
 
 #### Pre requisites ####
 install:
@@ -45,28 +37,10 @@ up: update-box custom_ca
 ifeq ($(GITHUB_ACTIONS),true) # Always set to true when GitHub Actions is running the workflow. You can use this variable to differentiate when tests are being run locally or by GitHub Actions.
 	SSL_CERT_FILE=${SSL_CERT_FILE} CURL_CA_BUNDLE=${CURL_CA_BUNDLE} ANSIBLE_ARGS='--extra-vars "ci_test=true"' vagrant up --provision
 else
-	SSL_CERT_FILE=${SSL_CERT_FILE} CURL_CA_BUNDLE=${CURL_CA_BUNDLE} CUSTOM_CA=${CUSTOM_CA} ANSIBLE_ARGS='--extra-vars "local_test=true"' vagrant up --provision
+	SSL_CERT_FILE=${SSL_CERT_FILE} CURL_CA_BUNDLE=${CURL_CA_BUNDLE} CUSTOM_CA=${CUSTOM_CA} vagrant up --provision
 endif
 
 test: clean up
-
-# helper commands
-update-box:
-	@SSL_CERT_FILE=${SSL_CERT_FILE} CURL_CA_BUNDLE=${CURL_CA_BUNDLE} vagrant box update || (echo '\n\nIf you get an SSL error you might be behind a transparent proxy. \nMore info https://github.com/fredrikhgrelland/vagrant-hashistack/blob/master/README.md#if-you-are-behind-a-transparent-proxy\n\n' && exit 2)
-
-proxy-to-minio:
-	consul connect proxy -service minio-local -upstream minio:9000 -log-level debug
-docker-local-build:
-	docker build docker -t fredrikhgrelland/hive:${LAST_COMMIT_HASH}
-	docker tag fredrikhgrelland/hive:${LAST_COMMIT_HASH} fredrikhgrelland/hive:test
-
-template_example: custom_ca
-ifeq ($(GITHUB_ACTIONS),true) # Always set to true when GitHub Actions is running the workflow. You can use this variable to differentiate when tests are being run locally or by GitHub Actions.
-	cd template_example; SSL_CERT_FILE=${SSL_CERT_FILE} CURL_CA_BUNDLE=${CURL_CA_BUNDLE} ANSIBLE_ARGS='--extra-vars "ci_test=true"' vagrant up --provision
-else
-	if [ -f "docker/conf/certificates/*.crt" ]; then cp -f docker/conf/certificates/*.crt template_example/docker/conf/certificates; fi
-	cd template_example; SSL_CERT_FILE=${SSL_CERT_FILE} CURL_CA_BUNDLE=${CURL_CA_BUNDLE} CUSTOM_CA=${CUSTOM_CA} ANSIBLE_ARGS='--extra-vars "local_test=true"' vagrant up --provision
-endif
 
 status:
 	vagrant global-status

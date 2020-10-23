@@ -17,6 +17,12 @@ variable "local_docker_image" {
 }
 
 # Hive
+variable "use_canary" {
+  type = bool
+  description = "Uses canary deployment for Hive"
+  default = false
+}
+
 variable "hive_service_name" {
   type        = string
   description = "Hive service name"
