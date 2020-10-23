@@ -27,11 +27,10 @@ make test
 ## Requirements
 ### Required software
 - [GNU make](https://man7.org/linux/man-pages/man1/make.1.html)
-- [Docker](https://www.docker.com/)
-- [Consul](https://www.consul.io/)
 
 ### Providers
 - [Nomad](https://registry.terraform.io/providers/hashicorp/nomad/latest/docs)
+- [Vault](https://registry.terraform.io/providers/hashicorp/vault/latest/docs)
 
 ## Inputs
 | Name | Description | Type | Default | Required |
