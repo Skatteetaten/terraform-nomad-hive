@@ -24,11 +24,12 @@ module "minio" {
 }
 
 module "postgres" {
-  source = "github.com/fredrikhgrelland/terraform-nomad-postgres.git?ref=0.1.0"
+  source = "github.com/fredrikhgrelland/terraform-nomad-postgres.git?ref=0.2.0"
 
   # nomad
   nomad_datacenters = ["dc1"]
   nomad_namespace   = "default"
+  nomad_host_volume = "persistence-postgres"
 
   # postgres
   service_name                    = "postgres"
@@ -37,7 +38,9 @@ module "postgres" {
   admin_user                      = "hive"
   admin_password                  = "hive"
   database                        = "metastore"
-  container_environment_variables = ["PGDATA=/var/lib/postgresql/data"]
+  volume_destination              = "/var/lib/postgresql/data"
+  use_host_volume                 = true
+  container_environment_variables = ["PGDATA=/var/lib/postgresql/data/"]
 }
 
 module "hive" {
