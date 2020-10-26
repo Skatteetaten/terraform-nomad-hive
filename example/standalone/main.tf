@@ -44,7 +44,7 @@ module "postgres" {
 }
 
 module "hive" {
-  source = "./.."
+  source = "../.."
 
   # nomad
   nomad_datacenters      = ["dc1"]
