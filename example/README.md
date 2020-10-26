@@ -1,6 +1,10 @@
-# This is a terraform module example
+# This is a terraform module examples
 
-All examples have their own directories, with a `main.tf` that references one or more modules. See [template_example](../template_example/example/standalone).
+All examples have their own directories, with a `main.tf` that references one or more modules.
+
+| Examples |
+| :------------- |
+| [standalone deployment](standalone) |
 
 ## References
 - [Creating Modules - official terraform documentation](https://www.terraform.io/docs/modules/index.html)

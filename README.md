@@ -27,11 +27,10 @@ make test
 ## Requirements
 ### Required software
 - [GNU make](https://man7.org/linux/man-pages/man1/make.1.html)
-- [Docker](https://www.docker.com/)
-- [Consul](https://www.consul.io/)
 
 ### Providers
 - [Nomad](https://registry.terraform.io/providers/hashicorp/nomad/latest/docs)
+- [Vault](https://registry.terraform.io/providers/hashicorp/vault/latest/docs)
 
 ## Inputs
 | Name | Description | Type | Default | Required |
@@ -171,7 +170,7 @@ OK
 ```
 
 #### Data example upload
-The [example/resources/data](example/resources/data) directory contains a data sample that is uploaded via the [dev/ansible/04_upload_files.yml](dev/ansible/04_upload_files.yml) playbook.
+The [example/resources/data](example/standalone/resources/data) directory contains a data sample that is uploaded via the [dev/ansible/04_upload_files.yml](dev/ansible/04_upload_files.yml) playbook.
 To create tables and do queries you can use the [beeline cli](https://cwiki.apache.org/confluence/display/Hive/HiveServer2+Clients#HiveServer2Clients-Beeline%E2%80%93CommandLineShell), see the sql-example bellow. However, if you're not familiar with the `beeline-cli`, see the [verifying setup](#verifying-setup) section.
 
 Create table `iris`
