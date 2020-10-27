@@ -51,7 +51,7 @@
     - test
 
 - name: Upload csv file to `/hive/some/prefix/iris-file.csv`
-  shell: mc cp ../../example/standalone/resources/data/csv/iris.csv minio-container/hive/some/prefix/iris-file.csv
+  shell: mc cp ../../example/resources/data/csv/iris.csv minio-container/hive/some/prefix/iris-file.csv
   register: csv_copy
   retries: 10
   delay: 5

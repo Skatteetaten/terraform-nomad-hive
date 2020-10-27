@@ -6,31 +6,64 @@
 This module is IaC - infrastructure as code which contains a nomad job of [hive](https://hive.apache.org/).
 
 ## Content
-1. [Usage](#usage)
+0. [Prerequisites](#prerequisites)
+1. [Compatibility](#compatibility)
 2. [Requirements](#requirements)
     1. [Required software](#required-software)
-    2. [Providers](#providers)
-3. [Inputs](#inputs)
-4. [Outputs](#outputs)
-5. [Modes](#modes)
-6. [Example usage](#example-usage)
+3. [Usage](#usage)
+   1. [Providers](#providers)
+   2. [Intentions](#intentions)
+4. [Inputs](#inputs)
+5. [Outputs](#outputs)
+6. [Modes](#modes)
+7. [Example](#example)
     1. [Verifying setup](#verifying-setup)
         1. [Data example upload](#data-example-upload)
-7. [License](#license)
+8. [Authors](#authors)
+9. [License](#license)
+10. [References](#references)
 
-## Usage
-The following command will run a instance of hive found in the [example](/example) folder.
-```sh
-make test
-```
+## Prerequisites
+Please follow [this section in original template](https://github.com/fredrikhgrelland/vagrant-hashistack-template#install-prerequisites)
+
+## Compatibility
+|Software|OSS Version|Enterprise Version|
+|:---|:---|:---|
+|Terraform|0.13.1 or newer||
+|Consul|1.8.3 or newer|1.8.3 or newer|
+|Vault|1.5.2.1 or newer|1.5.2.1 or newer|
+|Nomad|0.12.3 or newer|0.12.3 or newer|
 
 ## Requirements
+
 ### Required software
-- [GNU make](https://man7.org/linux/man-pages/man1/make.1.html)
+All software is provided and run with docker.
+See the [Makefile](Makefile) for inspiration.
+
+## Usage
+The following command will run hive in the [example/standalone](example/standalone) folder.
+```sh
+make up
+```
 
 ### Providers
 - [Nomad](https://registry.terraform.io/providers/hashicorp/nomad/latest/docs)
 - [Vault](https://registry.terraform.io/providers/hashicorp/vault/latest/docs)
+
+### Intentions
+Module is deployed with [service mesh approach using consul-connect integration](https://www.consul.io/docs/connect), where [communication `service-to-service` controlled by intentions](https://learn.hashicorp.com/tutorials/consul/get-started-service-networking#control-communication-with-intentions).
+Intentions are required **`only`** when [consul acl is enabled and default_policy is deny](https://learn.hashicorp.com/tutorials/consul/access-control-setup-production#enable-acls-on-the-agents).
+
+In the examples, intentions are created in the Ansible playboook [00_create_intention.yml](dev/ansible/00_create_intention.yml):
+
+| Intention between | type |
+| :---------------- | :--- |
+| mc => minio | allow |
+| minio-local => minio | allow |
+| hive-metastore => postgres | allow |
+
+> :warning: Note that these intentions needs to be created if you are using the module in another module and (consul acl enabled with default policy deny).
+>
 
 ## Inputs
 | Name | Description | Type | Default | Required |
@@ -61,9 +94,9 @@ Hive can be run in two modes:
 - [hivemetastore](./docker/bin/hivemetastore)
 - [hiveserver](./docker/bin/hiveserver)
 
-`NB!` current implementation supports only [`hivemetastore`](conf/nomad/hive.hcl#L99)
+`NB!` current implementation supports only [`hivemetastore`](conf/nomad/hive.hcl#L104)
 
-## Example usage
+## Example
 The example-code shows the minimum of what you need do to set up this module.
 ```hcl-terraform
 module "minio" {
@@ -170,23 +203,11 @@ OK
 ```
 
 #### Data example upload
-The [example/resources/data](example/standalone/resources/data) directory contains a data sample that is uploaded via the [dev/ansible/04_upload_files.yml](dev/ansible/04_upload_files.yml) playbook.
-To create tables and do queries you can use the [beeline cli](https://cwiki.apache.org/confluence/display/Hive/HiveServer2+Clients#HiveServer2Clients-Beeline%E2%80%93CommandLineShell), see the sql-example bellow. However, if you're not familiar with the `beeline-cli`, see the [verifying setup](#verifying-setup) section.
+Check [example/README.md#data-example-upload](example/README.md#data-example-upload)
 
-Create table `iris`
-```sql
-CREATE EXTERNAL TABLE iris (sepal_length DECIMAL, sepal_width DECIMAL,
-petal_length DECIMAL, petal_width DECIMAL, species STRING)
-ROW FORMAT DELIMITED
-FIELDS TERMINATED BY ','
-LINES TERMINATED BY '\n'
-LOCATION 's3a://hive/some/prefix/'
-TBLPROPERTIES ("skip.header.line.count"="1");
-```
-Query table `iris`
-```sql
-SELECT * FROM default.iris LIMIT 10;
-```
+## Authors
 
 ## License
 This work is licensed under Apache 2 License. See [LICENSE](./LICENSE) for full details.
+
+## References
