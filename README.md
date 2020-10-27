@@ -51,8 +51,8 @@ make up
 - [Vault](https://registry.terraform.io/providers/hashicorp/vault/latest/docs)
 
 ### Intentions
-Service mesh [communication controlled by intentions](https://learn.hashicorp.com/tutorials/consul/get-started-service-networking#control-communication-with-intentions).
-Intentions are required when [consul acl is enabled and default_policy is deny](https://learn.hashicorp.com/tutorials/consul/access-control-setup-production#enable-acls-on-the-agents).
+Module is deployed with [service mesh approach using consul-connect integration](https://www.consul.io/docs/connect), where [communication `service-to-service` controlled by intentions](https://learn.hashicorp.com/tutorials/consul/get-started-service-networking#control-communication-with-intentions).
+Intentions are required **`only`** when [consul acl is enabled and default_policy is deny](https://learn.hashicorp.com/tutorials/consul/access-control-setup-production#enable-acls-on-the-agents).
 
 In the examples, intentions are created in the Ansible playboook [00_create_intention.yml](dev/ansible/00_create_intention.yml):
 
