@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.3.0 UNRELEASED]
+
+### Added
+
+- Add intentions section in readme #42
+
 ## [0.2.0]
 
 ### Added
