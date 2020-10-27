@@ -52,7 +52,7 @@ make up
 
 ### Intentions
 Service mesh [communication controlled by intentions](https://learn.hashicorp.com/tutorials/consul/get-started-service-networking#control-communication-with-intentions).
-Intentions are required when [consul acl is enabled and consul_acl_default_policy is deny](https://learn.hashicorp.com/tutorials/consul/access-control-setup-production#enable-acls-on-the-agents).
+Intentions are required when [consul acl is enabled and default_policy is deny](https://learn.hashicorp.com/tutorials/consul/access-control-setup-production#enable-acls-on-the-agents).
 
 In the examples, intentions are created in the Ansible playboook [00_create_intention.yml](dev/ansible/00_create_intention.yml):
 
