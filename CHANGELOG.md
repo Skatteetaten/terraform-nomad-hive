@@ -5,6 +5,7 @@
 ### Added
 
 - Add intentions section in readme #42
+- Update box ~> 0.7.0 #45
 
 ## [0.2.0]
 
