@@ -1,5 +1,7 @@
 include dev/.env
 export PATH := $(shell pwd)/tmp:$(PATH)
+tag := $(shell date '+%d-%m-%YT%H-%M-%S')CET
+image := fredrikhgrelland/hive_3.1.0:${tag}
 
 .ONESHELL .PHONY: up update-box destroy-box remove-tmp clean example
 .DEFAULT_GOAL := up
@@ -66,3 +68,8 @@ update-box:
 pre-commit: check_for_docker_binary check_for_terraform_binary
 	docker run -e RUN_LOCAL=true -v "${PWD}:/tmp/lint/" github/super-linter
 	terraform fmt -recursive && echo "\e[32mTrying to prettify all .tf files.\e[0m"
+
+# rm all images
+#   -> docker images | grep  fredrikhgrelland/hive_3.1.0 | awk '{print $3}' | xargs docker rmi -f
+docker-build:
+	docker build -t ${image} docker
