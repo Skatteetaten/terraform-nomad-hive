@@ -6,6 +6,10 @@
 
 - Add intentions section in readme #42
 
+### Changed
+
+- changed paths in `make install` to delete tmp-files in all subdirectories #48
+
 ## [0.2.0]
 
 ### Added
