@@ -5,6 +5,7 @@
 ### Added
 
 - Add intentions section in readme #42
+- Update box ~> 0.7.x #45
 
 ### Changed
 
