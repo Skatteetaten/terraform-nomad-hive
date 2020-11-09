@@ -18,9 +18,9 @@ variable "local_docker_image" {
 
 # Hive
 variable "use_canary" {
-  type = bool
+  type        = bool
   description = "Uses canary deployment for Hive"
-  default = false
+  default     = false
 }
 
 variable "hive_service_name" {
@@ -48,20 +48,20 @@ variable "hive_container_environment_variables" {
 
 variable "hive_bucket" {
   type = object({
-    default     = string,
-    hive        = string
+    default = string,
+    hive    = string
   })
   description = "Hive requires minio buckets"
 }
 
 variable "resource" {
   type = object({
-    cpu     = number,
-    memory  = number
+    cpu    = number,
+    memory = number
   })
   default = {
-    cpu     = 500,
-    memory  = 1024
+    cpu    = 500,
+    memory = 1024
   }
   description = "Hive resources"
 }
