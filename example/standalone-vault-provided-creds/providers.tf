@@ -15,13 +15,13 @@ provider "vault" {
   token   = "master"
 }
 
-//terraform {
-//  required_providers {
-//    vault = {
-//      version = ">=2.14.0"
-//    }
-//    nomad = {
-//      version = ">=1.4.9"
-//    }
-//  }
-//}
+terraform {
+  required_providers {
+    vault = {
+      version = ">=2.14.0"
+    }
+    nomad = {
+      version = ">=1.4.9"
+    }
+  }
+}
