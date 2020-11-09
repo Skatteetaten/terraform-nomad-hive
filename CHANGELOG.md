@@ -7,6 +7,10 @@
 - Add intentions section in readme #42
 - Update box ~> 0.7.x #45
 - Resource allocation variables for proxy #54
+- Improve credentials management (vault provided credentials) #44
+- Bump example: minio ~> 0.3.0 #51
+- Bump example: postgres ~> 0.3.0 #51
+- Output variable for port #49
 
 ### Changed
 
