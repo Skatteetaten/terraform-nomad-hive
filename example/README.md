@@ -4,10 +4,11 @@ All examples have their own directories, with a `main.tf` that references one or
 
 | Examples |
 | :------------- |
-| [standalone deployment](standalone) |
+| [standalone-user-provided-creds](standalone-user-provided-creds) |
+| [standalone-vault-provided-creds](standalone-vault-provided-creds) |
 
 ## Data example upload
-The [resources/data](resources/data) directory contains a data sample that is uploaded via the [dev/ansible/04_upload_files.yml](../dev/ansible/04_upload_files.yml) playbook.
+The [resources/data](resources/data) directory contains a data sample that is uploaded via the [dev/ansible/04_upload_files.yml](../dev/ansible/20_upload_files.yml) playbook.
 To create tables and do queries you can use the [beeline cli](https://cwiki.apache.org/confluence/display/Hive/HiveServer2+Clients#HiveServer2Clients-Beeline%E2%80%93CommandLineShell), see the sql-example bellow. However, if you're not familiar with the `beeline-cli`, see the [verifying setup](../README.md#verifying-setup) section.
 
 Create table `iris`

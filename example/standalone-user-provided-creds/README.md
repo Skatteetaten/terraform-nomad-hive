@@ -6,5 +6,5 @@ At the startup hive will attempt to create required tables in postgres database,
 
 | Modules | version   |
 | ------------- |:-------------:|
-| [terraform-nomad-minio](https://github.com/fredrikhgrelland/terraform-nomad-minio) | \>= 0.2.0 |
-| [terraform-nomad-postgres](https://github.com/fredrikhgrelland/terraform-nomad-postgres) | \>= 0.2.0 |
+| [terraform-nomad-minio](https://github.com/fredrikhgrelland/terraform-nomad-minio) | \>= 0.3.0 |
+| [terraform-nomad-postgres](https://github.com/fredrikhgrelland/terraform-nomad-postgres) | \>= 0.3.0 |

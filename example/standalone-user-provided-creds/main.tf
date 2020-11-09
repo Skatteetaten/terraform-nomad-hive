@@ -15,9 +15,9 @@ module "minio" {
   vault_secret = {
     use_vault_provider   = false,
     vault_kv_policy_name = "",
-    vault_kv_path        = "",
-    vault_kv_access_key  = "",
-    vault_kv_secret_key  = ""
+    vault_kv_path          = "",
+    vault_kv_access_key    = "",
+    vault_kv_secret_key    = ""
   }
   access_key = "minio"
   secret_key = "minio123"
@@ -26,7 +26,7 @@ module "minio" {
   buckets                         = ["default", "hive"]
   container_environment_variables = ["JUST_EXAMPLE_VAR1=some-value", "ANOTHER_EXAMPLE2=some-other-value"]
   use_host_volume                 = false
-  use_canary                      = true
+  use_canary                      = false
 
   # mc
   mc_service_name                    = "mc"
@@ -63,7 +63,7 @@ module "postgres" {
 }
 
 module "hive" {
-  source = "../../.."
+  source = "../.."
 
   # nomad
   nomad_datacenters  = ["dc1"]
