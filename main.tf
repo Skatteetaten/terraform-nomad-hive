@@ -7,9 +7,11 @@ locals {
     ], var.hive_container_environment_variables)
   )
   vault_provider = var.postgres_vault_secret.use_vault_provider || var.minio_vault_secret.use_vault_provider
-  vault_kv_policy_name = concat(
-    [var.postgres_vault_secret.vault_kv_policy_name],
-    [var.minio_vault_secret.vault_kv_policy_name]
+  vault_kv_policy_name = jsonencode(
+    concat(
+      [var.postgres_vault_secret.vault_kv_policy_name],
+      [var.minio_vault_secret.vault_kv_policy_name]
+    )
   )
 }
 
