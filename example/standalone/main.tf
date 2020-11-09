@@ -7,18 +7,25 @@ module "minio" {
   nomad_host_volume = "persistence-minio"
 
   # minio
-  service_name                    = "minio"
-  host                            = "127.0.0.1"
-  port                            = 9000
-  container_image                 = "minio/minio:latest" # todo: avoid using tag latest in future releases
+  service_name    = "minio"
+  host            = "127.0.0.1"
+  port            = 9000
+  container_image = "minio/minio:latest" # todo: avoid using tag latest in future releases
   # user provided  credentials
-  access_key                      = "minio"
-  secret_key                      = "minio123"
+  vault_secret = {
+    use_vault_provider   = false,
+    vault_kv_policy_name = "",
+    vault_kv_path        = "",
+    vault_kv_access_key  = "",
+    vault_kv_secret_key  = ""
+  }
+  access_key = "minio"
+  secret_key = "minio123"
 
   data_dir                        = "/minio/data"
   buckets                         = ["default", "hive"]
   container_environment_variables = ["JUST_EXAMPLE_VAR1=some-value", "ANOTHER_EXAMPLE2=some-other-value"]
-  use_host_volume                 = true
+  use_host_volume                 = false
   use_canary                      = true
 
   # mc
@@ -51,8 +58,8 @@ module "hive" {
   source = "../.."
 
   # nomad
-  nomad_datacenters      = ["dc1"]
-  nomad_namespace        = "default"
+  nomad_datacenters  = ["dc1"]
+  nomad_namespace    = "default"
   local_docker_image = false
 
   # hive
@@ -62,8 +69,8 @@ module "hive" {
   hive_docker_image                    = "fredrikhgrelland/hive:3.1.0"
   hive_container_environment_variables = ["SOME_EXAMPLE=example-value"]
   resource = {
-    cpu     = 500,
-    memory  = 1024
+    cpu    = 500,
+    memory = 1024
   }
   resource_proxy =  {
     cpu     = 200,
@@ -72,12 +79,12 @@ module "hive" {
 
   # hive - minio
   hive_bucket = {
-    default     = "default",
-    hive        = "hive"
+    default = "default",
+    hive    = "hive"
   }
   minio_service = {
     service_name = module.minio.minio_service_name,
-    port         = 9000,  # todo: minio 0.0.1 does not have output variable port
+    port         = module.minio.minio_port,
     access_key   = module.minio.minio_access_key,
     secret_key   = module.minio.minio_secret_key,
   }
