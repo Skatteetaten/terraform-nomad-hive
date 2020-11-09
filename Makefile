@@ -52,8 +52,10 @@ destroy-box:
 remove-tmp:
 	rm -rf ./tmp
 	rm -rf ./.vagrant
+	rm -rf ./dev/tmp
 	rm -rf ./.minio.sys
 	rm -rf ./example/**/.terraform
+	rm -rf ./example/**/.terraform*
 	rm -rf ./example/**/terraform.tfstate
 	rm -rf ./example/**/terraform.tfstate.backup
 
