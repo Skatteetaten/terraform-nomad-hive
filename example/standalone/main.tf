@@ -1,5 +1,5 @@
 module "minio" {
-  source = "github.com/fredrikhgrelland/terraform-nomad-minio.git?ref=0.2.0"
+  source = "github.com/fredrikhgrelland/terraform-nomad-minio.git?ref=0.3.0"
 
   # nomad
   nomad_datacenters = ["dc1"]
@@ -11,12 +11,16 @@ module "minio" {
   host                            = "127.0.0.1"
   port                            = 9000
   container_image                 = "minio/minio:latest" # todo: avoid using tag latest in future releases
+  # user provided  credentials
   access_key                      = "minio"
   secret_key                      = "minio123"
+
   data_dir                        = "/minio/data"
   buckets                         = ["default", "hive"]
   container_environment_variables = ["JUST_EXAMPLE_VAR1=some-value", "ANOTHER_EXAMPLE2=some-other-value"]
   use_host_volume                 = true
+  use_canary                      = true
+
   # mc
   mc_service_name                    = "mc"
   mc_container_image                 = "minio/mc:latest" # todo: avoid using tag latest in future releases
