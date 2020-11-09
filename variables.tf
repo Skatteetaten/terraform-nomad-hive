@@ -93,6 +93,25 @@ variable "minio_service" {
   description = "Minio data-object contains service_name, port, access_key and secret_key"
 }
 
+variable "minio_vault_secret" {
+  type = object({
+    use_vault_provider     = bool,
+    vault_kv_policy_name   = string,
+    vault_kv_path          = string,
+    vault_kv_access_key    = string,
+    vault_kv_secret_key    = string
+  })
+  description = "Set of properties to be able to fetch secret from vault"
+  default = {
+    use_vault_provider     = false
+    vault_kv_policy_name   = "kv-secret"
+    vault_kv_path          = "secret/path/to/minio/creds"
+    vault_kv_access_key    = "access_key"
+    vault_kv_secret_key    = "secret_key"
+  }
+}
+
+
 # Postgres
 variable "postgres_service" {
   type = object({
@@ -103,4 +122,21 @@ variable "postgres_service" {
     password      = string
   })
   description = "Postgres data-object contains service_name, port, database_name, username and password"
+}
+variable "postgres_vault_secret" {
+  type = object({
+    use_vault_provider     = bool,
+    vault_kv_policy_name   = string,
+    vault_kv_path          = string,
+    vault_kv_username_name = string,
+    vault_kv_password_name = string
+  })
+  description = "Set of properties to be able to fetch secret from vault"
+  default = {
+    use_vault_provider     = false
+    vault_kv_policy_name   = "kv-secret"
+    vault_kv_path          = "secret/path/to/postgres/creds"
+    vault_kv_username_name = "username"
+    vault_kv_password_name = "password"
+  }
 }
