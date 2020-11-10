@@ -145,7 +145,7 @@ CORE_CONF_fs_s3a_path_style_access = true
         destination = "local/additional.env"
         env = true
         data = <<EOH
-          ${envs}
+${envs}
         EOH
       }
       template {
