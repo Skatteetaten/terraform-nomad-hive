@@ -151,8 +151,8 @@ module "minio" {
   container_image = "minio/minio:latest" # todo: avoid using tag latest in future releases
   # user provided  credentials
   vault_secret = {
-    use_vault_provider   = false,
-    vault_kv_policy_name = "",
+    use_vault_provider     = false,
+    vault_kv_policy_name   = "",
     vault_kv_path          = "",
     vault_kv_access_key    = "",
     vault_kv_secret_key    = ""
