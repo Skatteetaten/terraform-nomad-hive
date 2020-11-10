@@ -108,21 +108,22 @@ In the examples, intentions are created in the Ansible playboook [00_create_inte
 | hive\_container\_port | Hive container port | number | 9083 | no |
 | hive\_docker\_image | Hive container image | string | "fredrikhgrelland/hive:3.1.0" | no |
 | hive\_container\_environment\_variables | Hive environment variables | list(string) | [""] | no |
-| resource | Resource allocations | object | - | no |
-| resource.cpu | Resource allocation - cpu | number | 500 | no |
-| resource.memory | Resource allocation - memory | number | 1024 | no |
-| resource_proxy | Resource allocations for proxy | object | - | no |
-| resource_proxy.cpu | Resource allocation for proxy - cpu | number | 200 | no |
-| resource_proxy.memory | Resource allocation for proxy - memory | number | 128 | no |
-| hive\_bucket | Hive requires minio buckets | obj(string) |  { default = string, hive = string } | no |
+| resource | Resource allocations for cpu and memory | obj(number, number) | { cpu = 500, memory = 1024 } | no |
+| resource\_proxy | Resource allocations for proxy | obj(number, number) | { cpu = 200, memory = 128} | no |
+| hive\_bucket | Hive requires minio buckets | obj(string, string) |  { default = string, hive = string } | no |
 | minio\_service | Minio data-object contains service_name, port, access_key and secret_key | obj(string) | { service_name = string, port = number, access_key = string, secret_key = string } | no |
 | postgres\_service | Postgres data-object contains service_name, port, database_name, username and password | obj(string) | { service_name  = string, port = number, database_name = string, username = string, password = string } | no |
+| minio\_service | Minio data-object contains service_name, port, access_key and secret_key | obj(string, number, string, string) |  | no |
+| minio\_vault\_secret | Minio data-object contains vault related information to fetch credentials | obj(bool, string, string, string, string) | { use_vault_provider = false, vault_kv_policy_name = "kv-secret", vault_kv_path = "secret/path/to/minio/creds", vault_kv_access_key = "access_key", vault_kv_secret_key = "secret_key" } | no |
+| postgres\_service | Postgres data-object contains service_name, port, database_name, username and password | obj(string, number, string, string, string) |  | no |
+| postgres\_vault\_secret | Postgres data-object contains vault related information to fetch credentials | obj(bool, string, string, string, string) | { use_vault_provider = false, vault_kv_policy_name = "kv-secret", vault_kv_path = "secret/path/to/postgres/creds", vault_kv_username_name = "username", vault_kv_password_name = "password" } | no |
 
 ## Outputs
 | Name | Description | Type |
 |------|-------------|------|
 | service\_name | Hive service name | string |
 | buckets | Minio buckets for hive | string |
+| port | Hive service port | number |
 
 ## Modes
 Hive can be run in two modes:
