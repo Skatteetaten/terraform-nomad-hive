@@ -125,38 +125,38 @@ job "${service_name}" {
         destination = "local/config.env"
         env = true
         data = <<EOH
-HIVE_SITE_CONF_javax_jdo_option_ConnectionURL="jdbc:postgresql://{{ env "NOMAD_UPSTREAM_ADDR_${postgres_service_name}" }}/${postgres_database_name}"
-HIVE_SITE_CONF_javax_jdo_option_ConnectionDriverName="org.postgresql.Driver"
-HIVE_SITE_CONF_datanucleus_autoCreateSchema=false
-HIVE_SITE_CONF_hive_metastore_uris="thrift://127.0.0.1:9083"
-HIVE_SITE_CONF_hive_metastore_schema_verification=true
-HIVE_SITE_CONF_hive_execution_engine="mr"
-HIVE_SITE_CONF_hive_support_concurrency=false
-HIVE_SITE_CONF_hive_driver_parallel_compilation=true
-HIVE_SITE_CONF_hive_metastore_warehouse_dir="s3a://${hive_bucket}/warehouse"
-HIVE_SITE_CONF_hive_metastore_event_db_notification_api_auth=false
-CORE_CONF_fs_defaultFS = "s3a://${default_bucket}"
-CORE_CONF_fs_s3a_connection_ssl_enabled = false
-CORE_CONF_fs_s3a_endpoint = "http://{{ env "NOMAD_UPSTREAM_ADDR_${minio_service_name}" }}"
-CORE_CONF_fs_s3a_path_style_access = true
-EOH
+          HIVE_SITE_CONF_javax_jdo_option_ConnectionURL="jdbc:postgresql://{{ env "NOMAD_UPSTREAM_ADDR_${postgres_service_name}" }}/${postgres_database_name}"
+          HIVE_SITE_CONF_javax_jdo_option_ConnectionDriverName="org.postgresql.Driver"
+          HIVE_SITE_CONF_datanucleus_autoCreateSchema=false
+          HIVE_SITE_CONF_hive_metastore_uris="thrift://127.0.0.1:9083"
+          HIVE_SITE_CONF_hive_metastore_schema_verification=true
+          HIVE_SITE_CONF_hive_execution_engine="mr"
+          HIVE_SITE_CONF_hive_support_concurrency=false
+          HIVE_SITE_CONF_hive_driver_parallel_compilation=true
+          HIVE_SITE_CONF_hive_metastore_warehouse_dir="s3a://${hive_bucket}/warehouse"
+          HIVE_SITE_CONF_hive_metastore_event_db_notification_api_auth=false
+          CORE_CONF_fs_defaultFS = "s3a://${default_bucket}"
+          CORE_CONF_fs_s3a_connection_ssl_enabled = false
+          CORE_CONF_fs_s3a_endpoint = "http://{{ env "NOMAD_UPSTREAM_ADDR_${minio_service_name}" }}"
+          CORE_CONF_fs_s3a_path_style_access = true
+        EOH
       }
       template {
         destination = "local/additional.env"
         env = true
         data = <<EOH
-${envs}
-EOH
+          ${envs}
+        EOH
       }
       template {
         destination = "secrets/.env"
         env = true
         data = <<EOH
-CORE_CONF_fs_s3a_access_key = "${minio_access_key}"
-CORE_CONF_fs_s3a_secret_key = "${minio_secret_key}"
-HIVE_SITE_CONF_javax_jdo_option_ConnectionUserName="${postgres_username}"
-HIVE_SITE_CONF_javax_jdo_option_ConnectionPassword="${postgres_password}"
-EOH
+          CORE_CONF_fs_s3a_access_key = "${minio_access_key}"
+          CORE_CONF_fs_s3a_secret_key = "${minio_secret_key}"
+          HIVE_SITE_CONF_javax_jdo_option_ConnectionUserName="${postgres_username}"
+          HIVE_SITE_CONF_javax_jdo_option_ConnectionPassword="${postgres_password}"
+        EOH
       }
     }
   }
