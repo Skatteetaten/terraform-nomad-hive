@@ -152,10 +152,10 @@ ${envs}
         destination = "secrets/.env"
         env = true
         data = <<EOH
-          CORE_CONF_fs_s3a_access_key = "${minio_access_key}"
-          CORE_CONF_fs_s3a_secret_key = "${minio_secret_key}"
-          HIVE_SITE_CONF_javax_jdo_option_ConnectionUserName="${postgres_username}"
-          HIVE_SITE_CONF_javax_jdo_option_ConnectionPassword="${postgres_password}"
+CORE_CONF_fs_s3a_access_key = "${minio_access_key}"
+CORE_CONF_fs_s3a_secret_key = "${minio_secret_key}"
+HIVE_SITE_CONF_javax_jdo_option_ConnectionUserName="${postgres_username}"
+HIVE_SITE_CONF_javax_jdo_option_ConnectionPassword="${postgres_password}"
         EOH
       }
     }
