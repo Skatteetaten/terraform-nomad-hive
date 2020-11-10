@@ -79,7 +79,7 @@ In the examples, intentions are created in the Ansible playboook [00_create_inte
 | resource | Resource allocations | object |  | no |
 | resource.cpu | Resource allocation - cpu | number | 100 | no |
 | resource.memory | Resource allocation - memory | number | 128 | no |
-| resource_proxy | Resource allocations for proxy | object |  | no |
+| resource_proxy | Resource allocations for proxy | object | - | no |
 | resource_proxy.cpu | Resource allocation for proxy - cpu | number | 200 | no |
 | resource_proxy.memory | Resource allocation for proxy - memory | number | 128 | no |
 | hive\_bucket | Hive requires minio buckets | obj(string) |  { default = string, hive = string } | no |
