@@ -25,7 +25,6 @@ This module is IaC - infrastructure as code which contains a nomad job of [hive]
 12. [References](#references)
 
 ## Prerequisites
-
 Please follow [this section in original template](https://github.com/fredrikhgrelland/vagrant-hashistack-template#install-prerequisites)
 
 ## Requirements
