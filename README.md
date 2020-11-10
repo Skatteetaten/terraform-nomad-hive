@@ -44,7 +44,6 @@ Please follow [this section in original template](https://github.com/fredrikhgre
 - [Consul](https://releases.hashicorp.com/consul/)
 
 ## Compatibility
-
 |Software|OSS Version|Enterprise Version|
 |:---|:---|:---|
 |Terraform|0.13.1 or newer||
