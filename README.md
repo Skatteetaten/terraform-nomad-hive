@@ -31,7 +31,6 @@ Please follow [this section in original template](https://github.com/fredrikhgre
 ## Requirements
 
 ### Required modules
-
 |Module|Version|
 |:---|:---|
 |[terraform-nomad-minio](https://github.com/fredrikhgrelland/terraform-nomad-minio)| 0.3.0 or newer|
