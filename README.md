@@ -129,7 +129,7 @@ Hive can be run in two modes:
 - [hivemetastore](./docker/bin/hivemetastore)
 - [hiveserver](./docker/bin/hiveserver)
 
-`NB!` current implementation supports only [`hivemetastore`](conf/nomad/hive.hcl#110)
+**NB!** current implementation supports only [`hivemetastore`](conf/nomad/hive.hcl#110)
 
 ## Examples
 
