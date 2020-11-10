@@ -60,7 +60,6 @@ make up
 ```
 
 ### Verifying setup
-
 You can verify the setup by connection to Hive using the Nomad UI at [localhost:4646](http://localhost:4646/). Follow the steps below.
 1. Locate and click the *hive-metastore* service.
 2. Click the *exec* button and connect to the *metastoreserver* task.
