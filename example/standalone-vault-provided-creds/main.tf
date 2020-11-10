@@ -13,16 +13,16 @@ module "minio" {
   container_image = "minio/minio:latest" # todo: avoid using tag latest in future releases
 
   vault_secret = {
-    use_vault_provider      = true,
-    vault_kv_policy_name    = "kv-secret",
-    vault_kv_path           = "secret/data/random-string/minio",
-    vault_kv_access_key     = "access_key",
-    vault_kv_secret_key     = "secret_key"
+    use_vault_provider   = true,
+    vault_kv_policy_name = "kv-secret",
+    vault_kv_path        = "secret/data/random-string/minio",
+    vault_kv_access_key  = "access_key",
+    vault_kv_secret_key  = "secret_key"
   }
 
-# Credentials will be provided via vault > vault_secret.use_vault_provider = true
-# access_key = ""
-# secret_key = ""
+  # Credentials will be provided via vault > vault_secret.use_vault_provider = true
+  # access_key = ""
+  # secret_key = ""
 
   data_dir                        = "/minio/data"
   buckets                         = ["default", "hive"]
@@ -45,19 +45,19 @@ module "postgres" {
   nomad_host_volume = "persistence-postgres"
 
   # postgres
-  service_name                    = "postgres"
-  container_image                 = "postgres:12-alpine"
-  container_port                  = 5432
-  vault_secret                    = {
+  service_name    = "postgres"
+  container_image = "postgres:12-alpine"
+  container_port  = 5432
+  vault_secret = {
     use_vault_provider     = true,
     vault_kv_policy_name   = "kv-secret",
     vault_kv_path          = "secret/data/random-string/postgres",
     vault_kv_username_name = "username",
     vault_kv_password_name = "password"
   }
-# Credentials will be provided via vault > vault_secret.use_vault_provider = true
-#  admin_user                      = ""
-#  admin_password                  = ""
+  # Credentials will be provided via vault > vault_secret.use_vault_provider = true
+  #  admin_user                      = ""
+  #  admin_password                  = ""
 
   database                        = "metastore"
   volume_destination              = "/var/lib/postgresql/data"
@@ -92,17 +92,17 @@ module "hive" {
     hive    = "hive"
   }
   minio_service = {
-    service_name  = module.minio.minio_service_name,
-    port          = module.minio.minio_port,
-    access_key    = "", # will be ignored > postgres_vault_secret.use_vault_provider = true
-    secret_key    = ""  # will be ignored > minio_vault_secret.use_vault_provider = true
+    service_name = module.minio.minio_service_name,
+    port         = module.minio.minio_port,
+    access_key   = "", # will be ignored > postgres_vault_secret.use_vault_provider = true
+    secret_key   = ""  # will be ignored > minio_vault_secret.use_vault_provider = true
   }
   minio_vault_secret = {
-    use_vault_provider          = true
-    vault_kv_policy_name        = "kv-secret",
-    vault_kv_path               = "secret/data/random-string/minio",
-    vault_kv_access_key_name    = "access_key"
-    vault_kv_secret_key_name    = "secret_key"
+    use_vault_provider       = true
+    vault_kv_policy_name     = "kv-secret",
+    vault_kv_path            = "secret/data/random-string/minio",
+    vault_kv_access_key_name = "access_key"
+    vault_kv_secret_key_name = "secret_key"
   }
 
   # hive - postgres

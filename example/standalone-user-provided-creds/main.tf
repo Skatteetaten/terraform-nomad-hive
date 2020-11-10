@@ -18,9 +18,9 @@ module "minio" {
   vault_secret = {
     use_vault_provider   = false,
     vault_kv_policy_name = "",
-    vault_kv_path          = "",
-    vault_kv_access_key    = "",
-    vault_kv_secret_key    = ""
+    vault_kv_path        = "",
+    vault_kv_access_key  = "",
+    vault_kv_secret_key  = ""
   }
 
   data_dir                        = "/minio/data"
@@ -44,10 +44,10 @@ module "postgres" {
   nomad_host_volume = "persistence-postgres"
 
   # postgres
-  service_name                    = "postgres"
-  container_image                 = "postgres:12-alpine"
-  container_port                  = 5432
-  vault_secret                    = {
+  service_name    = "postgres"
+  container_image = "postgres:12-alpine"
+  container_port  = 5432
+  vault_secret = {
     use_vault_provider     = false,
     vault_kv_policy_name   = "",
     vault_kv_path          = "",
