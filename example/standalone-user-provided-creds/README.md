@@ -1,6 +1,5 @@
 # Standalone example with user provided credentials
-
-User provides credentials for `minio` and `postgres` database via input variables of modules. See next section, [modules in use](#modules-in-use).
+This is an example of a standalone Hive that implement user provided credentials for Minio and Postgres via input variables.
 
 Hive is deployed as one instance in [hivemetastore mode](../../docker/bin/hivemetastore).
 At the startup, Hive will attempt to create the required tables in the Postgres database, and if tables exist, this step will be skipped.
