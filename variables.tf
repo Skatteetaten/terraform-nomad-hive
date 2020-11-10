@@ -66,6 +66,18 @@ variable "resource" {
   description = "Hive resources"
 }
 
+variable "resource_proxy" {
+  type = object({
+    cpu     = number,
+    memory  = number
+  })
+  default = {
+    cpu     = 500,
+    memory  = 1024
+  }
+  description = "Hive proxy resources"
+}
+
 # Minio
 variable "minio_service" {
   type = object({

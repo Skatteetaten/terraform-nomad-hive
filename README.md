@@ -79,6 +79,9 @@ In the examples, intentions are created in the Ansible playboook [00_create_inte
 | resource | Resource allocations | object |  | no |
 | resource.cpu | Resource allocation - cpu | number | 500 | no |
 | resource.memory | Resource allocation - memory | number | 1024 | no |
+| resource_proxy | Resource allocations for proxy | object |  | no |
+| resource_proxy.cpu | Resource allocation - cpu | number | 500 | no |
+| resource_proxy.memory | Resource allocation - memory | number | 1024 | no |
 | hive\_bucket | Hive requires minio buckets | obj(string) |  { default = string, hive = string } | no |
 | minio\_service | Minio data-object contains service_name, port, access_key and secret_key | obj(string) | { service_name = string, port = number, access_key = string, secret_key = string } | no |
 | postgres\_service | Postgres data-object contains service_name, port, database_name, username and password | obj(string) | { service_name  = string, port = number, database_name = string, username = string, password = string } | no |

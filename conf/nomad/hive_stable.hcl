@@ -53,8 +53,8 @@ job "${service_name}" {
         sidecar_task {
           driver = "docker"
           resources {
-            cpu = "${cpu_proxy}"
-            memory = "${memory_proxy}"
+            cpu    = 500
+            memory = 1000
           }
         }
       }

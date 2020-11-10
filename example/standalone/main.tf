@@ -61,6 +61,10 @@ module "hive" {
     cpu     = 500,
     memory  = 1024
   }
+  resource_proxy =  {
+    cpu = 500,
+    memory = 1024
+  }
 
   # hive - minio
   hive_bucket = {
