@@ -76,7 +76,7 @@ In the examples, intentions are created in the Ansible playboook [00_create_inte
 | hive\_container\_port | Hive container port | number | 9083 | no |
 | hive\_docker\_image | Hive container image | string | "fredrikhgrelland/hive:3.1.0" | no |
 | hive\_container\_environment\_variables | Hive environment variables | list(string) | [""] | no |
-| resource | Resource allocations | object |  | no |
+| resource | Resource allocations | object | - | no |
 | resource.cpu | Resource allocation - cpu | number | 100 | no |
 | resource.memory | Resource allocation - memory | number | 128 | no |
 | resource_proxy | Resource allocations for proxy | object | - | no |
