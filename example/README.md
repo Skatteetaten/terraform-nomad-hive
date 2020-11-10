@@ -1,5 +1,4 @@
 # Examples
-
 All examples have their own directories, with a `main.tf` that references one or more modules.
 
 | Examples |
