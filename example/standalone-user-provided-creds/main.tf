@@ -26,8 +26,8 @@ module "minio" {
   data_dir                        = "/minio/data"
   buckets                         = ["default", "hive"]
   container_environment_variables = ["JUST_EXAMPLE_VAR1=some-value", "ANOTHER_EXAMPLE2=some-other-value"]
-  use_host_volume                 = false
-  use_canary                      = false
+  use_host_volume                 = true
+  use_canary                      = true
 
   # mc
   mc_service_name                    = "mc"
@@ -72,7 +72,7 @@ module "hive" {
   local_docker_image = false
 
   # hive
-  use_canary                           = false
+  use_canary                           = true
   hive_service_name                    = "hive-metastore"
   hive_container_port                  = 9083
   hive_docker_image                    = "fredrikhgrelland/hive:3.1.0"
