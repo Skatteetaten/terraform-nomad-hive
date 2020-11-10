@@ -95,19 +95,19 @@ variable "minio_service" {
 
 variable "minio_vault_secret" {
   type = object({
-    use_vault_provider     = bool,
-    vault_kv_policy_name   = string,
-    vault_kv_path          = string,
-    vault_kv_access_key    = string,
-    vault_kv_secret_key    = string
+    use_vault_provider          = bool,
+    vault_kv_policy_name        = string,
+    vault_kv_path               = string,
+    vault_kv_access_key_name    = string,
+    vault_kv_secret_key_name    = string
   })
   description = "Set of properties to be able to fetch secret from vault"
   default = {
-    use_vault_provider     = false
-    vault_kv_policy_name   = "kv-secret"
-    vault_kv_path          = "secret/path/to/minio/creds"
-    vault_kv_access_key    = "access_key"
-    vault_kv_secret_key    = "secret_key"
+    use_vault_provider          = false
+    vault_kv_policy_name        = "kv-secret"
+    vault_kv_path               = "secret/path/to/minio/creds"
+    vault_kv_access_key_name    = "access_key"
+    vault_kv_secret_key_name    = "secret_key"
   }
 }
 

@@ -111,11 +111,10 @@ In the examples, intentions are created in the Ansible playboook [00_create_inte
 | resource | Resource allocations for cpu and memory | obj(number, number) | { <br> cpu = 500, <br> memory = 1024 <br> } | no |
 | resource\_proxy | Resource allocations for proxy | obj(number, number) | { <br> cpu = 200, <br> memory = 128} <br> | no |
 | hive\_bucket | Hive requires minio buckets | obj(string, string) |  { <br> default = string, <br> hive = string <br> } | no |
-| minio\_service | Minio data-object contains service_name, port, access_key and secret_key | obj(string) | { <br> service_name = string, <br> port = number, <br> access_key = string, <br> secret_key = string } <br> | no |
-| postgres\_service | Postgres data-object contains service_name, port, database_name, username and password | obj(string) | { <br> service_name  = string, <br> port = number, <br> database_name = string, <br> username = string, <br> password = string <br> } | no |
+| minio\_service | Minio data-object contains service_name, port, access_key and secret_key | obj(string, number, string, string) | - | no |
+| minio\_vault\_secret | Minio data-object contains vault related information to fetch credentials | obj(bool, string, string, string, string) | { <br> use_vault_provider = false, <br> vault_kv_policy_name = "kv-secret", <br> vault_kv_path = "secret/path/to/minio/creds", <br> vault_kv_access_key_name = "access_key", <br> vault_kv_secret_key_name = "secret_key" <br> } | no |
+| postgres\_service | Postgres data-object contains service_name, port, database_name, username and password | obj(string, number, string, string, string) |  | no |
 | postgres\_vault\_secret | Postgres data-object contains vault related information to fetch credentials | obj(bool, string, string, string, string) | { <br> use_vault_provider = false, <br> vault_kv_policy_name = "kv-secret", <br> vault_kv_path = "secret/path/to/postgres/creds", <br> vault_kv_username_name = "username", <br> vault_kv_password_name = "password" <br> } | no |
-| minio\_service | Minio data-object contains service_name, port, access_key and secret_key | obj(string, number, string, string) |  | no |
-| minio\_vault\_secret | Minio data-object contains vault related information to fetch credentials | obj(bool, string, string, string, string) | { <br> use_vault_provider = false, <br> vault_kv_policy_name = "kv-secret", <br> vault_kv_path = "secret/path/to/minio/creds", <br> vault_kv_access_key = "access_key", <br> vault_kv_secret_key = "secret_key" <br> } | no |
 
 ## Outputs
 | Name | Description | Type |

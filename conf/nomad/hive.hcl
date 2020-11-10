@@ -161,8 +161,8 @@ EOH
 # MINIO credentials
 %{ if minio_use_vault_provider }
 {{ with secret "${minio_vault_kv_path}" }}
-CORE_CONF_fs_s3a_access_key = "{{ .Data.data.${minio_vault_kv_access_key} }}"
-CORE_CONF_fs_s3a_secret_key = "{{ .Data.data.${minio_vault_kv_secret_key} }}"
+CORE_CONF_fs_s3a_access_key = "{{ .Data.data.${minio_vault_kv_access_key_name} }}"
+CORE_CONF_fs_s3a_secret_key = "{{ .Data.data.${minio_vault_kv_secret_key_name} }}"
 {{ end }}
 %{ else }
 CORE_CONF_fs_s3a_access_key = "${minio_access_key}"
@@ -172,8 +172,8 @@ CORE_CONF_fs_s3a_secret_key = "${minio_secret_key}"
 # POSTGRES credentials
 %{ if postgres_use_vault_provider }
 {{ with secret "${postgres_vault_kv_path}" }}
-HIVE_SITE_CONF_javax_jdo_option_ConnectionUserName="{{ .Data.data.${postgres_vault_kv_username} }}"
-HIVE_SITE_CONF_javax_jdo_option_ConnectionPassword="{{ .Data.data.${postgres_vault_kv_password} }}"
+HIVE_SITE_CONF_javax_jdo_option_ConnectionUserName="{{ .Data.data.${postgres_vault_kv_username_name} }}"
+HIVE_SITE_CONF_javax_jdo_option_ConnectionPassword="{{ .Data.data.${postgres_vault_kv_password_name} }}"
 {{ end }}
 %{ else }
 HIVE_SITE_CONF_javax_jdo_option_ConnectionUserName="${postgres_username}"

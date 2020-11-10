@@ -11,7 +11,10 @@ module "minio" {
   host            = "127.0.0.1"
   port            = 9000
   container_image = "minio/minio:latest" # todo: avoid using tag latest in future releases
+
   # user provided  credentials
+  access_key = "minio"
+  secret_key = "minio123"
   vault_secret = {
     use_vault_provider   = false,
     vault_kv_policy_name = "",
@@ -19,8 +22,6 @@ module "minio" {
     vault_kv_access_key    = "",
     vault_kv_secret_key    = ""
   }
-  access_key = "minio"
-  secret_key = "minio123"
 
   data_dir                        = "/minio/data"
   buckets                         = ["default", "hive"]
