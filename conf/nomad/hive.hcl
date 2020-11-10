@@ -50,6 +50,13 @@ job "${service_name}" {
             }
           }
         }
+        sidecar_task {
+          driver = "docker"
+          resources {
+            cpu    = 500
+            memory = 1000
+          }
+        }
       }
     }
 
