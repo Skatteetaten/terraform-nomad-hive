@@ -132,7 +132,6 @@ Hive can be run in two modes:
 **NB!** current implementation supports only [`hivemetastore`](conf/nomad/hive.hcl#110)
 
 ## Examples
-
 Folder [example](example) contains examples of module usage, please refer for more details.
 
 The example-code shows the minimum of what you need do to set up this module.
