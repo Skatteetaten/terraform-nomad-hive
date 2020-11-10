@@ -50,6 +50,13 @@ job "${service_name}" {
             }
           }
         }
+        sidecar_task {
+          driver = "docker"
+          resources {
+            cpu = "${cpu_proxy}"
+            memory = "${memory_proxy}"
+          }
+        }
       }
     }
 
@@ -132,14 +139,14 @@ CORE_CONF_fs_defaultFS = "s3a://${default_bucket}"
 CORE_CONF_fs_s3a_connection_ssl_enabled = false
 CORE_CONF_fs_s3a_endpoint = "http://{{ env "NOMAD_UPSTREAM_ADDR_${minio_service_name}" }}"
 CORE_CONF_fs_s3a_path_style_access = true
-EOH
+        EOH
       }
       template {
         destination = "local/additional.env"
         env = true
         data = <<EOH
 ${envs}
-EOH
+        EOH
       }
       template {
         destination = "secrets/.env"
@@ -149,7 +156,7 @@ CORE_CONF_fs_s3a_access_key = "${minio_access_key}"
 CORE_CONF_fs_s3a_secret_key = "${minio_secret_key}"
 HIVE_SITE_CONF_javax_jdo_option_ConnectionUserName="${postgres_username}"
 HIVE_SITE_CONF_javax_jdo_option_ConnectionPassword="${postgres_password}"
-EOH
+        EOH
       }
     }
   }

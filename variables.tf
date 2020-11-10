@@ -66,6 +66,22 @@ variable "resource" {
   description = "Hive resources"
 }
 
+variable "resource_proxy" {
+  type = object({
+    cpu     = number,
+    memory  = number
+  })
+  default = {
+    cpu     = 200,
+    memory  = 128
+  }
+  description = "Hive proxy resources"
+  validation {
+    condition     = var.resource_proxy.cpu >= 200 && var.resource_proxy.memory >= 128
+    error_message = "Proxy resource must be at least: cpu=200, memory=128."
+  }
+}
+
 # Minio
 variable "minio_service" {
   type = object({
@@ -88,4 +104,3 @@ variable "postgres_service" {
   })
   description = "Postgres data-object contains service_name, port, database_name, username and password"
 }
-

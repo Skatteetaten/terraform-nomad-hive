@@ -26,6 +26,9 @@ data "template_file" "template_nomad_job_hive" {
     cpu                       = var.resource.cpu
     memory                    = var.resource.memory
 
+    cpu_proxy                 = var.resource_proxy.cpu
+    memory_proxy              = var.resource_proxy.memory
+
     hive_bucket               = var.hive_bucket.hive
     default_bucket            = var.hive_bucket.default
 

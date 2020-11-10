@@ -6,6 +6,7 @@
 
 - Add intentions section in readme #42
 - Update box ~> 0.7.x #45
+- Resource allocation variables for proxy #54
 
 ### Changed
 
