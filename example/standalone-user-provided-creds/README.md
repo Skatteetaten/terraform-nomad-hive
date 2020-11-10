@@ -3,7 +3,7 @@
 User provides credentials for `minio` and `postgres` database via input variables of modules. See next section, [modules in use](#modules-in-use).
 
 Hive is deployed as one instance in [hivemetastore mode](../../docker/bin/hivemetastore).
-At the startup hive will attempt to create required tables in postgres database, if tables are exist, this step will be skipped.
+At the startup, Hive will attempt to create the required tables in the Postgres database, and if tables exist, this step will be skipped.
 
 ## Modules in use
 
