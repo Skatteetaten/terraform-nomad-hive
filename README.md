@@ -36,7 +36,6 @@ Please follow [this section in original template](https://github.com/fredrikhgre
 |[terraform-nomad-postgres](https://github.com/fredrikhgrelland/terraform-nomad-postgres)| 0.3.0 or newer|
 
 ### Required software
-
 - [GNU make](https://man7.org/linux/man-pages/man1/make.1.html)
 - [Docker](https://www.docker.com/)
 - [Consul](https://releases.hashicorp.com/consul/)
