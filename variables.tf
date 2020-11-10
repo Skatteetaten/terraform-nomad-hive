@@ -72,8 +72,8 @@ variable "resource_proxy" {
     memory  = number
   })
   default = {
-    cpu     = 500,
-    memory  = 1024
+    cpu     = 300,
+    memory  = 512
   }
   description = "Hive proxy resources"
 }
@@ -100,4 +100,3 @@ variable "postgres_service" {
   })
   description = "Postgres data-object contains service_name, port, database_name, username and password"
 }
-
