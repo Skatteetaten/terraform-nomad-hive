@@ -254,6 +254,7 @@ module "hive" {
 [<img src="https://avatars3.githubusercontent.com/u/67954397?s=64&v=4">](https://github.com/Neha-Sinha2305)
 [<img src="https://avatars3.githubusercontent.com/u/71001093?s=64&v=4">](https://github.com/dangernil)
 [<img src="https://avatars1.githubusercontent.com/u/51820995?s=64&v=4">](https://github.com/pdmthorsrud)
+[<img src="https://avatars1.githubusercontent.com/u/43400021?s=64&v=4">](https://github.com/hannemariavister)
 
 ## License
 This work is licensed under Apache 2 License. See [LICENSE](./LICENSE) for full details.
