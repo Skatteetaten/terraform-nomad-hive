@@ -76,6 +76,10 @@ variable "resource_proxy" {
     memory  = 128
   }
   description = "Hive proxy resources"
+  validation {
+    condition     = var.resource_proxy.cpu >= 200 && var.resource_proxy.memory >= 128
+    error_message = "Proxy resource must be at least: cpu=200, memory=128."
+  }
 }
 
 # Minio
