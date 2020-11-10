@@ -72,8 +72,8 @@ variable "resource_proxy" {
     memory  = number
   })
   default = {
-    cpu     = 300,
-    memory  = 512
+    cpu     = 200,
+    memory  = 128
   }
   description = "Hive proxy resources"
 }
