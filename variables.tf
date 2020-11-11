@@ -18,9 +18,9 @@ variable "local_docker_image" {
 
 # Hive
 variable "use_canary" {
-  type = bool
+  type        = bool
   description = "Uses canary deployment for Hive"
-  default = false
+  default     = false
 }
 
 variable "hive_service_name" {
@@ -48,20 +48,20 @@ variable "hive_container_environment_variables" {
 
 variable "hive_bucket" {
   type = object({
-    default     = string,
-    hive        = string
+    default = string,
+    hive    = string
   })
   description = "Hive requires minio buckets"
 }
 
 variable "resource" {
   type = object({
-    cpu     = number,
-    memory  = number
+    cpu    = number,
+    memory = number
   })
   default = {
-    cpu     = 500,
-    memory  = 1024
+    cpu    = 500,
+    memory = 1024
   }
   description = "Hive resources"
 }
@@ -93,6 +93,25 @@ variable "minio_service" {
   description = "Minio data-object contains service_name, port, access_key and secret_key"
 }
 
+variable "minio_vault_secret" {
+  type = object({
+    use_vault_provider       = bool,
+    vault_kv_policy_name     = string,
+    vault_kv_path            = string,
+    vault_kv_access_key_name = string,
+    vault_kv_secret_key_name = string
+  })
+  description = "Set of properties to be able to fetch secret from vault"
+  default = {
+    use_vault_provider       = false
+    vault_kv_policy_name     = "kv-secret"
+    vault_kv_path            = "secret/path/to/minio/creds"
+    vault_kv_access_key_name = "access_key"
+    vault_kv_secret_key_name = "secret_key"
+  }
+}
+
+
 # Postgres
 variable "postgres_service" {
   type = object({
@@ -103,4 +122,21 @@ variable "postgres_service" {
     password      = string
   })
   description = "Postgres data-object contains service_name, port, database_name, username and password"
+}
+variable "postgres_vault_secret" {
+  type = object({
+    use_vault_provider     = bool,
+    vault_kv_policy_name   = string,
+    vault_kv_path          = string,
+    vault_kv_username_name = string,
+    vault_kv_password_name = string
+  })
+  description = "Set of properties to be able to fetch secret from vault"
+  default = {
+    use_vault_provider     = false
+    vault_kv_policy_name   = "kv-secret"
+    vault_kv_path          = "secret/path/to/postgres/creds"
+    vault_kv_username_name = "username"
+    vault_kv_password_name = "password"
+  }
 }

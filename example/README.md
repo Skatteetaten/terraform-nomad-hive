@@ -1,13 +1,27 @@
-# This is a terraform module examples
-
+# Examples
 All examples have their own directories, with a `main.tf` that references one or more modules.
 
 | Examples |
 | :------------- |
-| [standalone deployment](standalone) |
+| [standalone-user-provided-creds](standalone-user-provided-creds) |
+| [standalone-vault-provided-creds](standalone-vault-provided-creds) |
+
+## How to switch between examples
+> :warning: Currently, this process is hardcoded.
+
+File [10_run_terraform.yml](../dev/ansible/10_run_terraform.yml) contains `project_path` to correct folder with example, change it if you want to switch to another example.
+
+```yaml
+- name: Terraform
+  terraform:
+    project_path: ../../example/standalone-vault-provided-creds
+    force_init: true
+    state: present
+  register: terraform
+```
 
 ## Data example upload
-The [resources/data](resources/data) directory contains a data sample that is uploaded via the [dev/ansible/04_upload_files.yml](../dev/ansible/04_upload_files.yml) playbook.
+The [resources/data](resources/data) directory contains a data sample that is uploaded via the [dev/ansible/04_upload_files.yml](../dev/ansible/20_upload_files.yml) playbook.
 To create tables and do queries you can use the [beeline cli](https://cwiki.apache.org/confluence/display/Hive/HiveServer2+Clients#HiveServer2Clients-Beeline%E2%80%93CommandLineShell), see the sql-example bellow. However, if you're not familiar with the `beeline-cli`, see the [verifying setup](../README.md#verifying-setup) section.
 
 Create table `iris`

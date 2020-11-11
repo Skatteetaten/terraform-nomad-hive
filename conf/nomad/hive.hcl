@@ -93,6 +93,12 @@ job "${service_name}" {
     task "metastoreserver" {
       driver = "docker"
 
+%{ if use_vault_provider }
+      vault {
+        policies = ${vault_kv_policy_name}
+      }
+%{ endif }
+
 %{ if local_docker_image }
       artifact {
         source = "s3::http://127.0.0.1:9000/dev/tmp/hive_local.tar"
@@ -139,24 +145,41 @@ CORE_CONF_fs_defaultFS = "s3a://${default_bucket}"
 CORE_CONF_fs_s3a_connection_ssl_enabled = false
 CORE_CONF_fs_s3a_endpoint = "http://{{ env "NOMAD_UPSTREAM_ADDR_${minio_service_name}" }}"
 CORE_CONF_fs_s3a_path_style_access = true
-        EOH
+EOH
       }
       template {
         destination = "local/additional.env"
         env = true
         data = <<EOH
 ${envs}
-        EOH
+EOH
       }
       template {
         destination = "secrets/.env"
         env = true
         data = <<EOH
+# MINIO credentials
+%{ if minio_use_vault_provider }
+{{ with secret "${minio_vault_kv_path}" }}
+CORE_CONF_fs_s3a_access_key = "{{ .Data.data.${minio_vault_kv_access_key_name} }}"
+CORE_CONF_fs_s3a_secret_key = "{{ .Data.data.${minio_vault_kv_secret_key_name} }}"
+{{ end }}
+%{ else }
 CORE_CONF_fs_s3a_access_key = "${minio_access_key}"
 CORE_CONF_fs_s3a_secret_key = "${minio_secret_key}"
+%{ endif }
+
+# POSTGRES credentials
+%{ if postgres_use_vault_provider }
+{{ with secret "${postgres_vault_kv_path}" }}
+HIVE_SITE_CONF_javax_jdo_option_ConnectionUserName="{{ .Data.data.${postgres_vault_kv_username_name} }}"
+HIVE_SITE_CONF_javax_jdo_option_ConnectionPassword="{{ .Data.data.${postgres_vault_kv_password_name} }}"
+{{ end }}
+%{ else }
 HIVE_SITE_CONF_javax_jdo_option_ConnectionUserName="${postgres_username}"
 HIVE_SITE_CONF_javax_jdo_option_ConnectionPassword="${postgres_password}"
-        EOH
+%{ endif }
+EOH
       }
     }
   }
