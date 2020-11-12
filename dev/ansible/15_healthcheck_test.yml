@@ -9,7 +9,7 @@
   register: result_hive
   retries: 15
   delay: 15
-  until: result_hive.json | length == 1
+  until: result_hive.json | length == 2
   tags: test
 
 - name: Hive metastore healthcheck pass with token
@@ -25,5 +25,5 @@
   register: result_hive
   retries: 15
   delay: 15
-  until: result_hive.json | length == 1
+  until: result_hive.json | length == 2
   tags: test
