@@ -25,18 +25,6 @@ job "${service_name}" {
       name = "${service_name}"
       port = "${port}"
 
-      check {
-        name = "beeline"
-        type = "script"
-        task = "metastoreserver"
-        command = "/bin/bash"
-        args = [
-          "-c",
-          "beeline -u jdbc:hive2:// -e \"SHOW DATABASES;\" &> /tmp/check_script_beeline_metastoreserver && echo \"return code $?\""]
-        interval = "30s"
-        timeout = "120s"
-      }
-
       connect {
         sidecar_service {
           proxy {
@@ -58,6 +46,29 @@ job "${service_name}" {
           }
         }
       }
+
+      check {
+        name = "hive-ready"
+        type = "script"
+        task = "metastoreserver"
+        command = "/bin/bash"
+        args = [
+          "-c",
+          "beeline -u jdbc:hive2:// -e \"SHOW DATABASES;\" &> /tmp/check_script_beeline_metastoreserver; echo \"return code $?\""]
+        interval = "30s"
+        timeout = "90s"
+      }
+
+      check {
+        name = "hive-minio-availability"
+        type     = "http"
+        path     = "/minio/health/ready"
+        port     = ${minio_local_bind_port}
+        interval = "15s"
+        timeout  = "5s"
+        address_mode = "driver"
+      }
+
     }
 
     network {

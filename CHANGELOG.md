@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.4.0 UNRELEASED]
+
+### Added
+
+- Add minio-availability health check #57
+
 ## [0.3.0]
 
 ### Added
