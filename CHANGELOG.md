@@ -6,6 +6,10 @@
 
 - Add minio-availability health check #57
 
+### Changed
+
+- Increased the [docker pull timeout](https://www.nomadproject.io/docs/drivers/docker#image_pull_timeout) for the hive-image #52
+
 ## [0.3.0]
 
 ### Added
