@@ -162,7 +162,7 @@ jobs:
         with:
           allowed: major,minor,patch
 
-      - name: Bump version and push tag
+      - name: Get tag next version
         id: next_version
         uses: anothrNick/github-tag-action@1.26.0
         env:

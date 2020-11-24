@@ -9,6 +9,7 @@
 ### Changed
 
 - Increased the [docker pull timeout](https://www.nomadproject.io/docs/drivers/docker#image_pull_timeout) for the hive-image #52
+- Changed to anothrNick/github-tag-action to get bumped version tags. Old action is deprecated [no issue]
 
 ## [0.3.0]
 
