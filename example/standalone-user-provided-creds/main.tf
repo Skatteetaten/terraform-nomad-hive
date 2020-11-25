@@ -1,3 +1,8 @@
+locals {
+  minio_image     = var.minio_docker_image
+  postgres_image  = var.postgres_docker_image
+  hive_image      = var.hive_docker_image
+}
 module "minio" {
   source = "github.com/fredrikhgrelland/terraform-nomad-minio.git?ref=0.3.0"
 
@@ -10,7 +15,7 @@ module "minio" {
   service_name    = "minio"
   host            = "127.0.0.1"
   port            = 9000
-  container_image = "minio/minio:latest" # todo: avoid using tag latest in future releases
+  container_image = local.minio_image
 
   # user provided  credentials
   access_key = "minio"
@@ -45,7 +50,7 @@ module "postgres" {
 
   # postgres
   service_name    = "postgres"
-  container_image = "postgres:12-alpine"
+  container_image = local.postgres_image
   container_port  = 5432
   vault_secret = {
     use_vault_provider     = false,
@@ -75,7 +80,7 @@ module "hive" {
   use_canary                           = true
   hive_service_name                    = "hive-metastore"
   hive_container_port                  = 9083
-  hive_docker_image                    = "fredrikhgrelland/hive:3.1.0"
+  hive_docker_image                    = local.hive_image
   hive_container_environment_variables = ["SOME_EXAMPLE=example-value"]
 
   resource = {
