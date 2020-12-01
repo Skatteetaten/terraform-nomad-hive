@@ -107,9 +107,9 @@ In the examples, intentions are created in the Ansible playboook [00_create_inte
 | resource\_proxy | Resource allocations for proxy | obj(number, number) | { <br> cpu = 200, <br> memory = 128} <br> | no |
 | hive\_bucket | Hive requires minio buckets | obj(string, string) |  { <br> default = string, <br> hive = string <br> } | no |
 | minio\_service | Minio data-object contains service_name, port, access_key and secret_key | obj(string, number, string, string) | - | no |
-| minio\_vault\_secret | Minio data-object contains vault related information to fetch credentials | obj(bool, string, string, string, string) | { <br> use_vault_provider = false, <br> vault_kv_policy_name = "kv-secret", <br> vault_kv_path = "secret/path/to/minio/creds", <br> vault_kv_access_key_name = "access_key", <br> vault_kv_secret_key_name = "secret_key" <br> } | no |
+| minio\_vault\_secret | Minio data-object contains vault related information to fetch credentials | obj(bool, string, string, string, string) | { <br> use_vault_provider = false, <br> vault_kv_policy_name = "kv-secret", <br> vault_kv_path = "secret/path/to/minio/creds", <br> vault_kv_field_access_key = "access_key", <br> vault_kv_field_secret_key = "secret_key" <br> } | no |
 | postgres\_service | Postgres data-object contains service_name, port, database_name, username and password | obj(string, number, string, string, string) |  | no |
-| postgres\_vault\_secret | Postgres data-object contains vault related information to fetch credentials | obj(bool, string, string, string, string) | { <br> use_vault_provider = false, <br> vault_kv_policy_name = "kv-secret", <br> vault_kv_path = "secret/path/to/postgres/creds", <br> vault_kv_username_name = "username", <br> vault_kv_password_name = "password" <br> } | no |
+| postgres\_vault\_secret | Postgres data-object contains vault related information to fetch credentials | obj(bool, string, string, string, string) | { <br> use_vault_provider = false, <br> vault_kv_policy_name = "kv-secret", <br> vault_kv_path = "secret/path/to/postgres/creds", <br> vault_kv_field_username = "username", <br> vault_kv_field_password = "password" <br> } | no |
 
 ## Outputs
 | Name | Description | Type |
@@ -131,7 +131,7 @@ Folder [example](example) contains examples of module usage, please refer for mo
 The example-code shows the minimum of what you need do to set up this module.
 ```hcl
 module "minio" {
-  source = "github.com/fredrikhgrelland/terraform-nomad-minio.git?ref=0.3.0"
+  source = "github.com/fredrikhgrelland/terraform-nomad-minio.git?ref=0.4.0"
 
   # nomad
   nomad_datacenters = ["dc1"]
@@ -148,11 +148,11 @@ module "minio" {
   access_key = "minio"
   secret_key = "minio123"
   vault_secret = {
-    use_vault_provider   = false,
-    vault_kv_policy_name = "",
-    vault_kv_path        = "",
-    vault_kv_access_key  = "",
-    vault_kv_secret_key  = ""
+    use_vault_provider          = false,
+    vault_kv_policy_name        = "",
+    vault_kv_path               = "",
+    vault_kv_field_access_key   = "",
+    vault_kv_field_secret_key   = ""
   }
 
   data_dir                        = "/minio/data"
@@ -168,7 +168,7 @@ module "minio" {
 }
 
 module "postgres" {
-  source = "github.com/fredrikhgrelland/terraform-nomad-postgres.git?ref=0.3.0"
+  source = "github.com/fredrikhgrelland/terraform-nomad-postgres.git?ref=0.4.0"
 
   # nomad
   nomad_datacenters = ["dc1"]
@@ -180,11 +180,11 @@ module "postgres" {
   container_image = "postgres:12-alpine"
   container_port  = 5432
   vault_secret = {
-    use_vault_provider     = false,
-    vault_kv_policy_name   = "",
-    vault_kv_path          = "",
-    vault_kv_username_name = "",
-    vault_kv_password_name = ""
+    use_vault_provider      = false,
+    vault_kv_policy_name    = "",
+    vault_kv_path           = "",
+    vault_kv_field_username = "",
+    vault_kv_field_password = ""
   }
   admin_user                      = "hive"
   admin_password                  = "hive"
