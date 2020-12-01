@@ -85,29 +85,29 @@ variable "resource_proxy" {
 # Minio
 variable "minio_service" {
   type = object({
-    service_name = string,
-    port         = number,
-    access_key   = string,
-    secret_key   = string,
+    service_name = string
+    port         = number
+    access_key   = string
+    secret_key   = string
   })
   description = "Minio data-object contains service_name, port, access_key and secret_key"
 }
 
 variable "minio_vault_secret" {
   type = object({
-    use_vault_provider       = bool,
-    vault_kv_policy_name     = string,
-    vault_kv_path            = string,
-    vault_kv_access_key_name = string,
-    vault_kv_secret_key_name = string
+    use_vault_provider       = bool
+    vault_kv_policy_name     = string
+    vault_kv_path            = string
+    vault_kv_field_access_key = string
+    vault_kv_field_secret_key = string
   })
   description = "Set of properties to be able to fetch secret from vault"
   default = {
     use_vault_provider       = false
     vault_kv_policy_name     = "kv-secret"
     vault_kv_path            = "secret/path/to/minio/creds"
-    vault_kv_access_key_name = "access_key"
-    vault_kv_secret_key_name = "secret_key"
+    vault_kv_field_access_key = "access_key"
+    vault_kv_field_secret_key = "secret_key"
   }
 }
 
@@ -115,28 +115,28 @@ variable "minio_vault_secret" {
 # Postgres
 variable "postgres_service" {
   type = object({
-    service_name  = string,
-    port          = number,
-    database_name = string,
-    username      = string,
+    service_name  = string
+    port          = number
+    database_name = string
+    username      = string
     password      = string
   })
   description = "Postgres data-object contains service_name, port, database_name, username and password"
 }
 variable "postgres_vault_secret" {
   type = object({
-    use_vault_provider     = bool,
-    vault_kv_policy_name   = string,
-    vault_kv_path          = string,
-    vault_kv_username_name = string,
-    vault_kv_password_name = string
+    use_vault_provider     = bool
+    vault_kv_policy_name   = string
+    vault_kv_path          = string
+    vault_kv_field_username = string
+    vault_kv_field_password = string
   })
   description = "Set of properties to be able to fetch secret from vault"
   default = {
     use_vault_provider     = false
     vault_kv_policy_name   = "kv-secret"
     vault_kv_path          = "secret/path/to/postgres/creds"
-    vault_kv_username_name = "username"
-    vault_kv_password_name = "password"
+    vault_kv_field_username = "username"
+    vault_kv_field_password = "password"
   }
 }

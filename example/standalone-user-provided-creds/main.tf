@@ -1,5 +1,5 @@
 module "minio" {
-  source = "github.com/fredrikhgrelland/terraform-nomad-minio.git?ref=0.3.0"
+  source = "github.com/fredrikhgrelland/terraform-nomad-minio.git?ref=0.4.0"
 
   # nomad
   nomad_datacenters = ["dc1"]
@@ -19,8 +19,8 @@ module "minio" {
     use_vault_provider   = false,
     vault_kv_policy_name = "",
     vault_kv_path        = "",
-    vault_kv_access_key  = "",
-    vault_kv_secret_key  = ""
+    vault_kv_field_access_key  = "",
+    vault_kv_field_secret_key  = ""
   }
 
   data_dir                        = "/minio/data"
@@ -36,7 +36,7 @@ module "minio" {
 }
 
 module "postgres" {
-  source = "github.com/fredrikhgrelland/terraform-nomad-postgres.git?ref=0.3.0"
+  source = "github.com/fredrikhgrelland/terraform-nomad-postgres.git?ref=0.4.0"
 
   # nomad
   nomad_datacenters = ["dc1"]
@@ -51,8 +51,8 @@ module "postgres" {
     use_vault_provider     = false,
     vault_kv_policy_name   = "",
     vault_kv_path          = "",
-    vault_kv_username_name = "",
-    vault_kv_password_name = ""
+    vault_kv_field_username = "",
+    vault_kv_field_password = ""
   }
   admin_user                      = "hive"
   admin_password                  = "hive"

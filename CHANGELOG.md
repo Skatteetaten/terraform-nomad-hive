@@ -1,5 +1,16 @@
 # Changelog
 
+## [0.4.0 UNRELEASED]
+
+### Added
+
+- Bump example: minio ~> 0.4.0 #65
+- Bump example: postgres ~> 0.4.0 #65
+
+### Changed
+
+- Variable names #63
+
 ## [0.3.1]
 
 ### Added

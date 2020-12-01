@@ -1,5 +1,5 @@
 module "minio" {
-  source = "github.com/fredrikhgrelland/terraform-nomad-minio.git?ref=0.3.0"
+  source = "github.com/fredrikhgrelland/terraform-nomad-minio.git?ref=0.4.0"
 
   # nomad
   nomad_datacenters = ["dc1"]
@@ -16,8 +16,8 @@ module "minio" {
     use_vault_provider   = true,
     vault_kv_policy_name = "kv-secret",
     vault_kv_path        = "secret/data/random-string/minio",
-    vault_kv_access_key  = "access_key",
-    vault_kv_secret_key  = "secret_key"
+    vault_kv_field_access_key  = "access_key",
+    vault_kv_field_secret_key  = "secret_key"
   }
 
   # Credentials will be provided via vault > vault_secret.use_vault_provider = true
@@ -37,7 +37,7 @@ module "minio" {
 }
 
 module "postgres" {
-  source = "github.com/fredrikhgrelland/terraform-nomad-postgres.git?ref=0.3.0"
+  source = "github.com/fredrikhgrelland/terraform-nomad-postgres.git?ref=0.4.0"
 
   # nomad
   nomad_datacenters = ["dc1"]
@@ -52,8 +52,8 @@ module "postgres" {
     use_vault_provider     = true,
     vault_kv_policy_name   = "kv-secret",
     vault_kv_path          = "secret/data/random-string/postgres",
-    vault_kv_username_name = "username",
-    vault_kv_password_name = "password"
+    vault_kv_field_username = "username",
+    vault_kv_field_password = "password"
   }
   # Credentials will be provided via vault > vault_secret.use_vault_provider = true
   #  admin_user                      = ""
@@ -106,8 +106,8 @@ module "hive" {
     use_vault_provider       = true
     vault_kv_policy_name     = "kv-secret",
     vault_kv_path            = "secret/data/random-string/minio",
-    vault_kv_access_key_name = "access_key"
-    vault_kv_secret_key_name = "secret_key"
+    vault_kv_field_access_key = "access_key"
+    vault_kv_field_secret_key = "secret_key"
   }
 
   # hive - postgres
@@ -122,8 +122,8 @@ module "hive" {
     use_vault_provider     = true,
     vault_kv_policy_name   = "kv-secret",
     vault_kv_path          = "secret/data/random-string/postgres",
-    vault_kv_username_name = "username",
-    vault_kv_password_name = "password"
+    vault_kv_field_username = "username",
+    vault_kv_field_password = "password"
   }
 
   depends_on = [

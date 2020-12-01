@@ -52,8 +52,8 @@ data "template_file" "template_nomad_job_hive" {
     postgres_use_vault_provider     = var.postgres_vault_secret.use_vault_provider
     postgres_vault_kv_policy_name   = var.postgres_vault_secret.vault_kv_policy_name
     postgres_vault_kv_path          = var.postgres_vault_secret.vault_kv_path
-    postgres_vault_kv_username_name = var.postgres_vault_secret.vault_kv_username_name
-    postgres_vault_kv_password_name = var.postgres_vault_secret.vault_kv_password_name
+    postgres_vault_kv_field_username = var.postgres_vault_secret.vault_kv_field_username
+    postgres_vault_kv_field_password = var.postgres_vault_secret.vault_kv_field_password
 
     # minio
     minio_service_name    = var.minio_service.service_name
@@ -64,8 +64,8 @@ data "template_file" "template_nomad_job_hive" {
     minio_use_vault_provider       = var.minio_vault_secret.use_vault_provider
     minio_vault_kv_policy_name     = var.minio_vault_secret.vault_kv_policy_name
     minio_vault_kv_path            = var.minio_vault_secret.vault_kv_path
-    minio_vault_kv_access_key_name = var.minio_vault_secret.vault_kv_access_key_name
-    minio_vault_kv_secret_key_name = var.minio_vault_secret.vault_kv_secret_key_name
+    minio_vault_kv_field_access_key = var.minio_vault_secret.vault_kv_field_access_key
+    minio_vault_kv_field_secret_key = var.minio_vault_secret.vault_kv_field_secret_key
 
   }
 }
