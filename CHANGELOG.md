@@ -6,6 +6,7 @@
 
 - Bump example: minio ~> 0.4.0 #65
 - Bump example: postgres ~> 0.4.0 #65
+- Bump vagrant-hashistack ~> 0.9.0 #67
 
 ### Changed
 
