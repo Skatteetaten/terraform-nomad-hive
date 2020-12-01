@@ -68,12 +68,12 @@ variable "resource" {
 
 variable "resource_proxy" {
   type = object({
-    cpu     = number,
-    memory  = number
+    cpu    = number,
+    memory = number
   })
   default = {
-    cpu     = 200,
-    memory  = 128
+    cpu    = 200,
+    memory = 128
   }
   description = "Hive proxy resources"
   validation {
@@ -95,17 +95,17 @@ variable "minio_service" {
 
 variable "minio_vault_secret" {
   type = object({
-    use_vault_provider       = bool
-    vault_kv_policy_name     = string
-    vault_kv_path            = string
+    use_vault_provider        = bool
+    vault_kv_policy_name      = string
+    vault_kv_path             = string
     vault_kv_field_access_key = string
     vault_kv_field_secret_key = string
   })
   description = "Set of properties to be able to fetch secret from vault"
   default = {
-    use_vault_provider       = false
-    vault_kv_policy_name     = "kv-secret"
-    vault_kv_path            = "secret/path/to/minio/creds"
+    use_vault_provider        = false
+    vault_kv_policy_name      = "kv-secret"
+    vault_kv_path             = "secret/path/to/minio/creds"
     vault_kv_field_access_key = "access_key"
     vault_kv_field_secret_key = "secret_key"
   }
@@ -125,17 +125,17 @@ variable "postgres_service" {
 }
 variable "postgres_vault_secret" {
   type = object({
-    use_vault_provider     = bool
-    vault_kv_policy_name   = string
-    vault_kv_path          = string
+    use_vault_provider      = bool
+    vault_kv_policy_name    = string
+    vault_kv_path           = string
     vault_kv_field_username = string
     vault_kv_field_password = string
   })
   description = "Set of properties to be able to fetch secret from vault"
   default = {
-    use_vault_provider     = false
-    vault_kv_policy_name   = "kv-secret"
-    vault_kv_path          = "secret/path/to/postgres/creds"
+    use_vault_provider      = false
+    vault_kv_policy_name    = "kv-secret"
+    vault_kv_path           = "secret/path/to/postgres/creds"
     vault_kv_field_username = "username"
     vault_kv_field_password = "password"
   }

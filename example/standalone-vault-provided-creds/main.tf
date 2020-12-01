@@ -13,11 +13,11 @@ module "minio" {
   container_image = "minio/minio:latest" # todo: avoid using tag latest in future releases
 
   vault_secret = {
-    use_vault_provider   = true,
-    vault_kv_policy_name = "kv-secret",
-    vault_kv_path        = "secret/data/random-string/minio",
-    vault_kv_field_access_key  = "access_key",
-    vault_kv_field_secret_key  = "secret_key"
+    use_vault_provider        = true,
+    vault_kv_policy_name      = "kv-secret",
+    vault_kv_path             = "secret/data/random-string/minio",
+    vault_kv_field_access_key = "access_key",
+    vault_kv_field_secret_key = "secret_key"
   }
 
   # Credentials will be provided via vault > vault_secret.use_vault_provider = true
@@ -49,9 +49,9 @@ module "postgres" {
   container_image = "postgres:12-alpine"
   container_port  = 5432
   vault_secret = {
-    use_vault_provider     = true,
-    vault_kv_policy_name   = "kv-secret",
-    vault_kv_path          = "secret/data/random-string/postgres",
+    use_vault_provider      = true,
+    vault_kv_policy_name    = "kv-secret",
+    vault_kv_path           = "secret/data/random-string/postgres",
     vault_kv_field_username = "username",
     vault_kv_field_password = "password"
   }
@@ -86,9 +86,9 @@ module "hive" {
     memory = 1024
   }
 
-  resource_proxy =  {
-    cpu     = 200,
-    memory  = 128
+  resource_proxy = {
+    cpu    = 200,
+    memory = 128
   }
 
   # hive - minio
@@ -103,9 +103,9 @@ module "hive" {
     secret_key   = ""  # will be ignored > minio_vault_secret.use_vault_provider = true
   }
   minio_vault_secret = {
-    use_vault_provider       = true
-    vault_kv_policy_name     = "kv-secret",
-    vault_kv_path            = "secret/data/random-string/minio",
+    use_vault_provider        = true
+    vault_kv_policy_name      = "kv-secret",
+    vault_kv_path             = "secret/data/random-string/minio",
     vault_kv_field_access_key = "access_key"
     vault_kv_field_secret_key = "secret_key"
   }
@@ -119,9 +119,9 @@ module "hive" {
     password      = "" # will be ignored > postgres_vault_secret.use_vault_provider = true
   }
   postgres_vault_secret = {
-    use_vault_provider     = true,
-    vault_kv_policy_name   = "kv-secret",
-    vault_kv_path          = "secret/data/random-string/postgres",
+    use_vault_provider      = true,
+    vault_kv_policy_name    = "kv-secret",
+    vault_kv_path           = "secret/data/random-string/postgres",
     vault_kv_field_username = "username",
     vault_kv_field_password = "password"
   }

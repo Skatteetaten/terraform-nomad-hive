@@ -16,11 +16,11 @@ module "minio" {
   access_key = "minio"
   secret_key = "minio123"
   vault_secret = {
-    use_vault_provider   = false,
-    vault_kv_policy_name = "",
-    vault_kv_path        = "",
-    vault_kv_field_access_key  = "",
-    vault_kv_field_secret_key  = ""
+    use_vault_provider        = false,
+    vault_kv_policy_name      = "",
+    vault_kv_path             = "",
+    vault_kv_field_access_key = "",
+    vault_kv_field_secret_key = ""
   }
 
   data_dir                        = "/minio/data"
@@ -48,9 +48,9 @@ module "postgres" {
   container_image = "postgres:12-alpine"
   container_port  = 5432
   vault_secret = {
-    use_vault_provider     = false,
-    vault_kv_policy_name   = "",
-    vault_kv_path          = "",
+    use_vault_provider      = false,
+    vault_kv_policy_name    = "",
+    vault_kv_path           = "",
     vault_kv_field_username = "",
     vault_kv_field_password = ""
   }
@@ -82,9 +82,9 @@ module "hive" {
     cpu    = 500,
     memory = 1024
   }
-  resource_proxy =  {
-    cpu     = 200,
-    memory  = 128
+  resource_proxy = {
+    cpu    = 200,
+    memory = 128
   }
 
   # hive - minio
