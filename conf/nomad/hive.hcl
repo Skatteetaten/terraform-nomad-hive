@@ -174,7 +174,7 @@ EOH
 %{ if minio_use_vault_provider }
 {{ with secret "${minio_vault_kv_path}" }}
 CORE_CONF_fs_s3a_access_key = "{{ .Data.data.${minio_vault_kv_field_access_key} }}"
-CORE_CONF_fs_s3a_secret_key = "{{ .Data.data.${minio_vault_kv_field_access_key} }}"
+CORE_CONF_fs_s3a_secret_key = "{{ .Data.data.${minio_vault_kv_field_secret_key} }}"
 {{ end }}
 %{ else }
 CORE_CONF_fs_s3a_access_key = "${minio_access_key}"
