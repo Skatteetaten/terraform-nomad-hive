@@ -30,6 +30,7 @@ data "template_file" "template_nomad_job_hive" {
 
     local_docker_image = var.local_docker_image
     image              = var.hive_docker_image # !NB: no affect when `local_docker_image=true`
+    consul_image       = var.consul_docker_image
     port               = var.hive_container_port
     envs               = local.hive_env_vars
 

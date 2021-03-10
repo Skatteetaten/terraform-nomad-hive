@@ -40,6 +40,12 @@ variable "hive_docker_image" {
   default     = "fredrikhgrelland/hive:3.1.0"
 }
 
+variable "consul_docker_image" {
+  type        = string
+  description = "Consul docker image"
+  default     = "consul:1.9"
+}
+
 variable "hive_container_environment_variables" {
   type        = list(string)
   description = "Hive environment variables"
