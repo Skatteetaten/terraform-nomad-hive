@@ -76,7 +76,7 @@ job "${service_name}" {
         timeout  = "5s"
         }
 
-        }
+    }
 
     network {
       mode = "bridge"

@@ -11,6 +11,8 @@
 ### Changed
 
 - Variable names #63
+- http check to script check #68
+- now uses variable to set consul image [no issue]
 
 ## [0.3.1]
 
