@@ -69,7 +69,7 @@ job "${service_name}" {
           "-o",
           "/dev/null",
           "-w",
-          "HTTP code: %{http_code}",
+          "HTTP code: %%{http_code}",
           "localhost:9000/minio/health/ready"
         ]
         interval = "15s"
