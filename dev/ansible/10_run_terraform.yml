@@ -1,6 +1,6 @@
 - name: Terraform
   terraform:
-    project_path: ../../example/standalone-user-provided-creds
+    project_path: ../../example/standalone-vault-provided-creds
     force_init: true
     state: present
   register: terraform
