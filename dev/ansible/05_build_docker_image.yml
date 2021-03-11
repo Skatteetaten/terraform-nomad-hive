@@ -1,32 +1,32 @@
-#- name: Remove docker image
-#  docker_image:
-#    name: docker_image
-#    tag: local
-#    force_absent: true
-#    state: absent
-#
-#- name: Build docker image
-#  docker_image:
-#    name: hive_local_image
-#    tag: local
-#    build:
-#      path: /vagrant/docker
-#      pull: false
-#      args:
-#        TEST_DOWNLOAD_BUILD_ARGUMENT: test-arg
-#    source: build
-#
-#- name: Create tmp if it does not exist
-#  file:
-#    path: /vagrant/dev/tmp
-#    state: directory
-#    mode: '0755'
-#    owner: vagrant
-#    group: vagrant
-#
-#- name: Archive docker image
-#  docker_image:
-#    name: hive_local_image
-#    tag: local
-#    archive_path: /vagrant/dev/tmp/hive_local.tar
-#    source: local
+- name: Remove docker image
+  docker_image:
+    name: docker_image
+    tag: local
+    force_absent: true
+    state: absent
+
+- name: Build docker image
+  docker_image:
+    name: hive_local_image
+    tag: local
+    build:
+      path: /vagrant/docker
+      pull: false
+      args:
+        TEST_DOWNLOAD_BUILD_ARGUMENT: test-arg
+    source: build
+
+- name: Create tmp if it does not exist
+  file:
+    path: /vagrant/dev/tmp
+    state: directory
+    mode: '0755'
+    owner: vagrant
+    group: vagrant
+
+- name: Archive docker image
+  docker_image:
+    name: hive_local_image
+    tag: local
+    archive_path: /vagrant/dev/tmp/hive_local.tar
+    source: local
