@@ -29,6 +29,12 @@ variable "hive_service_name" {
   default     = "hive-metastore"
 }
 
+variable "consul_docker_image" {
+  type        = string
+  description = "Consul docker image"
+  default     = "consul:1.9"
+}
+
 variable "hive_container_port" {
   type        = number
   description = "Hive port"

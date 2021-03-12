@@ -59,16 +59,34 @@ job "${service_name}" {
         timeout = "90s"
       }
 
-      check {
+     /* check {
         name = "hive-minio-availability"
-        type     = "http"
-        path     = "/minio/health/ready"
-        port     = ${minio_local_bind_port}
+        type     = "script"
+        task     = "metastoreserver"
+        command  = "/usr/bin/curl"
+        args = [
+          "-s",
+          "-o",
+          "/dev/null",
+          "-w",
+          "HTTP code: %%{http_code}",
+          "127.0.0.1:${minio_local_bind_port}/minio/health/ready"
+        ]
         interval = "15s"
         timeout  = "5s"
-        address_mode = "driver"
       }
-
+      */
+      check {
+        name = "hive-minio-availability"
+        type = "script"
+        task = "metastoreserver"
+        command = "/bin/bash"
+        args = [
+          "-c",
+          "beeline -u jdbc:hive2:// -e \"SHOW DATABASES;\" &> /tmp/check_script_beeline_metastoreserver; echo \"return code $?\""]
+        interval = "30s"
+        timeout = "90s"
+      }
     }
 
     network {
@@ -88,7 +106,7 @@ job "${service_name}" {
         memory = 32
       }
       config {
-        image = "consul:latest"
+        image = "${consul_image}"
         entrypoint = ["/bin/sh"]
         args = ["-c", "jq </local/service.json -e '.[].Status|select(. == \"passing\")'"]
         volumes = ["tmp/service.json:/local/service.json" ]
