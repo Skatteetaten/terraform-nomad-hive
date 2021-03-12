@@ -12,6 +12,9 @@
 
 - Variable names #63
 
+### Fixed
+- Docker builds failing #72
+
 ## [0.3.1]
 
 ### Added
