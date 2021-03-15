@@ -1,6 +1,6 @@
 # Changelog
 
-## [0.4.0 UNRELEASED]
+## [0.4.0]
 
 ### Added
 
@@ -11,6 +11,13 @@
 ### Changed
 
 - Variable names #63
+- now uses variable to set consul image [no issue]
+
+### Fixed
+
+- Docker builds failing #72
+- http check to script check #68
+- sequence of test ansible [no issue]
 
 ## [0.3.1]
 
