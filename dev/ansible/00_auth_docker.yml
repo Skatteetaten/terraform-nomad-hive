@@ -20,9 +20,3 @@
     username: "{{ lookup('env', 'CONTAINER_REGISTRY_USERNAME') }}"
     password: "{{ lookup('env', 'CONTAINER_REGISTRY_TOKEN') }}"
   when: not docker_auth_file.stat.exists and (lookup('env', 'CONTAINER_REGISTRY_URL') or lookup('env', 'CONTAINER_REGISTRY_USERNAME'))
-
-- name: TEST
-  shell: |
-    ls -la ~/.docker/config.json
-    cat ~/.docker/config.json
-    docker pull centos:8
