@@ -1,4 +1,4 @@
-- stat: path=/vagrant/docker/conf/config.json
+- stat: path=/vagrant/docker/conf/auth/config.json
   register: docker_auth_file
 
 - name: Create docker home dir

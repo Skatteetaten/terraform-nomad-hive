@@ -15,7 +15,7 @@
 
 ### Fixed
 
-- Docker builds failing #72
+- Docker builds failing - ratelimit #72
 - http check to script check #68
 - sequence of test ansible [no issue]
 
