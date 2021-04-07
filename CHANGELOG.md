@@ -1,5 +1,10 @@
 # Changelog
 
+## [0.5.0 UNRELEASED]
+
+### Changed
+- Test local build docker image #75
+
 ## [0.4.0]
 
 ### Added
