@@ -1,5 +1,10 @@
 # Changelog
 
+## [0.5.0 UNRELEASED]
+
+### Changed
+- Off docker build image for all test [related to #78]
+
 ## [0.4.0]
 
 ### Added
