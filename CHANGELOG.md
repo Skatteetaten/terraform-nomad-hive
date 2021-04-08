@@ -12,6 +12,7 @@
 
 - Variable names #63
 - now uses variable to set consul image [no issue]
+- Links and text containing 'fredrikhgrelland' changed to 'skatteetaten' #71
 
 ### Fixed
 
