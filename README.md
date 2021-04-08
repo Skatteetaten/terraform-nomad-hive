@@ -1,5 +1,5 @@
 <!-- markdownlint-disable MD041 -->
-<p align="center"><a href="https://github.com/fredrikhgrelland/vagrant-hashistack-template" alt="Built on"><img src="https://img.shields.io/badge/Built%20from%20template-Vagrant--hashistack--template-blue?style=for-the-badge&logo=github"/></a><p align="center"><a href="https://github.com/fredrikhgrelland/vagrant-hashistack" alt="Built on"><img src="https://img.shields.io/badge/Powered%20by%20-Vagrant--hashistack-orange?style=for-the-badge&logo=vagrant"/></a></p></p>
+<p align="center"><a href="https://github.com/skatteetaten/vagrant-hashistack-template" alt="Built on"><img src="https://img.shields.io/badge/Built%20from%20template-Vagrant--hashistack--template-blue?style=for-the-badge&logo=github"/></a><p align="center"><a href="https://github.com/skatteetaten/vagrant-hashistack" alt="Built on"><img src="https://img.shields.io/badge/Powered%20by%20-Vagrant--hashistack-orange?style=for-the-badge&logo=vagrant"/></a></p></p>
 
 
 # Terraform-nomad-hive
@@ -25,15 +25,15 @@ This module is IaC - infrastructure as code which contains a nomad job of [hive]
 12. [References](#references)
 
 ## Prerequisites
-Please follow [this section in original template](https://github.com/fredrikhgrelland/vagrant-hashistack-template#install-prerequisites)
+Please follow [this section in original template](https://github.com/skatteetaten/vagrant-hashistack-template#install-prerequisites)
 
 ## Requirements
 
 ### Required modules
 |Module|Version|
 |:---|:---|
-|[terraform-nomad-minio](https://github.com/fredrikhgrelland/terraform-nomad-minio)| 0.3.0 or newer|
-|[terraform-nomad-postgres](https://github.com/fredrikhgrelland/terraform-nomad-postgres)| 0.3.0 or newer|
+|[terraform-nomad-minio](https://github.com/skatteetaten/terraform-nomad-minio)| 0.3.0 or newer|
+|[terraform-nomad-postgres](https://github.com/skatteetaten/terraform-nomad-postgres)| 0.3.0 or newer|
 
 ### Required software
 - [GNU make](https://man7.org/linux/man-pages/man1/make.1.html)
@@ -131,7 +131,7 @@ Folder [example](example) contains examples of module usage, please refer for mo
 The example-code shows the minimum of what you need do to set up this module.
 ```hcl
 module "minio" {
-  source = "github.com/fredrikhgrelland/terraform-nomad-minio.git?ref=0.4.0"
+  source = "github.com/skatteetaten/terraform-nomad-minio.git?ref=0.4.0"
 
   # nomad
   nomad_datacenters = ["dc1"]
@@ -168,7 +168,7 @@ module "minio" {
 }
 
 module "postgres" {
-  source = "github.com/fredrikhgrelland/terraform-nomad-postgres.git?ref=0.4.0"
+  source = "github.com/skatteetaten/terraform-nomad-postgres.git?ref=0.4.0"
 
   # nomad
   nomad_datacenters = ["dc1"]
