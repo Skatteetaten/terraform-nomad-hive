@@ -3,8 +3,6 @@
     project_path: ../../example/standalone-vault-provided-creds
     force_init: true
     state: present
-    variables:
-      local_docker_image: "true"
   register: terraform
 
 - name: Terraform stdout

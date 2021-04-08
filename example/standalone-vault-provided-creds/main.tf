@@ -72,7 +72,7 @@ module "hive" {
   # nomad
   nomad_datacenters  = ["dc1"]
   nomad_namespace    = "default"
-  local_docker_image = false
+  local_docker_image = true
 
   # hive
   use_canary                           = true
