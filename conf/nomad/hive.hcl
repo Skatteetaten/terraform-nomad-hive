@@ -59,33 +59,16 @@ job "${service_name}" {
         timeout = "90s"
       }
 
-     /* check {
-        name = "hive-minio-availability"
-        type     = "script"
-        task     = "metastoreserver"
-        command  = "/usr/bin/curl"
-        args = [
-          "-s",
-          "-o",
-          "/dev/null",
-          "-w",
-          "HTTP code: %%{http_code}",
-          "127.0.0.1:${minio_local_bind_port}/minio/health/ready"
-        ]
-        interval = "15s"
-        timeout  = "5s"
-      }
-      */
+      # This checks that hive instance can access minio instance
+      # checks goes via loopback to sidecar proxy (connect.sidecar_service.proxy.upstreams.minio_local_bind_port)
       check {
-        name = "hive-minio-availability"
-        type = "script"
-        task = "metastoreserver"
-        command = "/bin/bash"
-        args = [
-          "-c",
-          "beeline -u jdbc:hive2:// -e \"SHOW DATABASES;\" &> /tmp/check_script_beeline_metastoreserver; echo \"return code $?\""]
-        interval = "30s"
-        timeout = "90s"
+        name          = "hive-minio-availability"
+        type          = "http"
+        path          = "/minio/health/ready"
+        port          = ${minio_local_bind_port}
+        interval      = "15s"
+        timeout       = "5s"
+        address_mode  = "driver"
       }
     }
 
