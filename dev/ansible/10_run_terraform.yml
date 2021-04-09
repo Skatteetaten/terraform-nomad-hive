@@ -1,3 +1,5 @@
+# Pay attention to env variable `build_docker_image` from ./05_build_docker_image.yml
+# variable env `build_docker_image` must be equal to terraform variable `local_docker_image`
 - name: Terraform
   terraform:
     project_path: ../../example/standalone-vault-provided-creds
