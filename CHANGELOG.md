@@ -4,6 +4,7 @@
 
 ### Changed
 - Off docker build image for all test [related to #78]
+- Re-implement hive-availability-minio healthcheck #78
 
 ## [0.4.0]
 
