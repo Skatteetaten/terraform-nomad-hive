@@ -1,6 +1,6 @@
 # Changelog
 
-## [0.5.0 UNRELEASED]
+## [0.4.1]
 
 ### Changed
 - Off docker build image for all test [related to #78]
