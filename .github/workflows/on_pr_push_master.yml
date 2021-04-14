@@ -160,8 +160,8 @@ jobs:
 
       - uses: actions/upload-artifact@v2
         with:
-          name: nomad-logs-alloc
-          path: /home/vagrant/opt/nomad/server/
+          name: nomad-logs
+          path: ~/.nomad-logs
 
   release-prerequisites:
     if: |
