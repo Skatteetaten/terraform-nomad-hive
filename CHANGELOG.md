@@ -1,5 +1,10 @@
 # Changelog
 
+## [0.5.0 UNRELEASED]
+
+### Changed
+- Additional flags [no issue]
+
 ## [0.4.1]
 
 ### Changed
