@@ -159,9 +159,9 @@ jobs:
         run: make test
 
       - uses: actions/upload-artifact@v2
-          with:
-            name: nomad-logs-alloc
-            path: /opt/nomad/data/alloc
+        with:
+          name: nomad-logs-alloc
+          path: /opt/nomad/data/alloc
 
   release-prerequisites:
     if: |
