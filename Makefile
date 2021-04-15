@@ -1,7 +1,7 @@
 include dev/.env
 export PATH := $(shell pwd)/tmp:$(PATH)
 
-.ONESHELL .PHONY: up update-box destroy-box remove-tmp clean example
+.ONESHELL .PHONY: up update-box destroy-box remove-tmp clean example test
 .DEFAULT_GOAL := up
 
 #### Pre requisites ####
@@ -40,12 +40,15 @@ else
 	SSL_CERT_FILE=${SSL_CERT_FILE} CURL_CA_BUNDLE=${CURL_CA_BUNDLE} CUSTOM_CA=${CUSTOM_CA} ANSIBLE_ARGS='-v' vagrant up --provision
 endif
 
-test: clean up copy-logs
+test: clean up change-log-owner copy-logs
 
 # dont even ask
+change-log-owner:
+	ls -la
+	ssh -i .vagrant/machines/default/virtualbox/private_key vagrant@127.0.0.1 -p 2222 "sudo chown vagrant:vagrant -R /home/vagrant/opt/"
+
 copy-logs:
-	ssh -i .vagrant/machines/default/virtualbox/private_key vagrant@127.0.0.1 -p 2222 "sudo chown vagrant:vagrant -R /home/vagrant/opt/" && \
-    	scp -i .vagrant/machines/default/virtualbox/private_key -r -P 2222 vagrant@127.0.0.1:/home/vagrant/opt/nomad/server/ ~/.nomad-logs
+	scp -i .vagrant/machines/default/virtualbox/private_key -r -P 2222 vagrant@127.0.0.1:/home/vagrant/opt/nomad/server/ ~/.nomad-logs
 
 status:
 	vagrant global-status
