@@ -51,10 +51,10 @@ debug:
 	ls -la .vagrant/machines/default/virtualbox
 # dont even ask
 change-log-owner:
-	ssh -i .vagrant/machines/default/virtualbox/private_key vagrant@127.0.0.1 -p 2222 "sudo chown vagrant:vagrant -R /home/vagrant/opt/"
+	ssh -o StrictHostKeyChecking=no -i .vagrant/machines/default/virtualbox/private_key vagrant@127.0.0.1 -p 2222 "sudo chown vagrant:vagrant -R /home/vagrant/opt/"
 
 copy-logs:
-	scp -i .vagrant/machines/default/virtualbox/private_key -r -P 2222 vagrant@127.0.0.1:/home/vagrant/opt/nomad/server/ ~/.nomad-logs
+	scp -o StrictHostKeyChecking=no -i .vagrant/machines/default/virtualbox/private_key -r -P 2222 vagrant@127.0.0.1:/home/vagrant/opt/nomad/server/ ~/.nomad-logs
 
 status:
 	vagrant global-status
