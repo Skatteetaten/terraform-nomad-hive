@@ -42,9 +42,15 @@ endif
 
 test: clean up change-log-owner copy-logs
 
+debug:
+	vagrant global-status
+	ls -la
+	ls -la .vagrant
+	ls -la .vagrant/machines
+	ls -la .vagrant/machines/default
+	ls -la .vagrant/machines/default/virtualbox
 # dont even ask
 change-log-owner:
-	ls -la
 	ssh -i .vagrant/machines/default/virtualbox/private_key vagrant@127.0.0.1 -p 2222 "sudo chown vagrant:vagrant -R /home/vagrant/opt/"
 
 copy-logs:
