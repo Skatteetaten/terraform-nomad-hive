@@ -35,7 +35,7 @@ endif
 
 up: update-box custom_ca
 ifeq ($(GITHUB_ACTIONS),true) # Always set to true when GitHub Actions is running the workflow. You can use this variable to differentiate when tests are being run locally or by GitHub Actions.
-	SSL_CERT_FILE=${SSL_CERT_FILE} CURL_CA_BUNDLE=${CURL_CA_BUNDLE} ANSIBLE_ARGS='-v --extra-vars "ci_test=true"' vagrant up --provision
+	SSL_CERT_FILE=${SSL_CERT_FILE} CURL_CA_BUNDLE=${CURL_CA_BUNDLE} ANSIBLE_ARGS='-v --extra-vars "ci_test=true"' vagrant up --provision || true
 else
 	SSL_CERT_FILE=${SSL_CERT_FILE} CURL_CA_BUNDLE=${CURL_CA_BUNDLE} CUSTOM_CA=${CUSTOM_CA} ANSIBLE_ARGS='-v' vagrant up --provision
 endif
@@ -51,10 +51,10 @@ debug:
 	ls -la .vagrant/machines/default/virtualbox
 # dont even ask
 change-log-owner:
-	ssh -o StrictHostKeyChecking=no -i .vagrant/machines/default/virtualbox/private_key vagrant@127.0.0.1 -p 2222 "sudo chown vagrant:vagrant -R /home/vagrant/opt/"
+	ssh -o StrictHostKeyChecking=no -i .vagrant/machines/default/virtualbox/private_key vagrant@127.0.0.1 -p 2222 "sudo chown vagrant:vagrant -R /home/vagrant/opt/" || true
 
 copy-logs:
-	scp -o StrictHostKeyChecking=no -i .vagrant/machines/default/virtualbox/private_key -r -P 2222 vagrant@127.0.0.1:/home/vagrant/opt/nomad/server/ ~/.nomad-logs
+	scp -o StrictHostKeyChecking=no -i .vagrant/machines/default/virtualbox/private_key -r -P 2222 vagrant@127.0.0.1:/home/vagrant/opt/nomad/server/ ~/.nomad-logs || true
 
 status:
 	vagrant global-status
