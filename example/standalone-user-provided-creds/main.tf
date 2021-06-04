@@ -17,6 +17,7 @@ module "minio" {
   secret_key = "minio123"
   vault_secret = {
     use_vault_provider        = false,
+    use_custom_vault_policy   = false,
     vault_kv_policy_name      = "",
     vault_kv_path             = "",
     vault_kv_field_access_key = "",
@@ -49,6 +50,7 @@ module "postgres" {
   container_port  = 5432
   vault_secret = {
     use_vault_provider      = false,
+    use_custom_vault_policy = false,
     vault_kv_policy_name    = "",
     vault_kv_path           = "",
     vault_kv_field_username = "",
