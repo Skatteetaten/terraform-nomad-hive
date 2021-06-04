@@ -7,6 +7,7 @@ locals {
     ], var.hive_container_environment_variables)
   )
   vault_provider = var.postgres_vault_secret.use_vault_provider || var.minio_vault_secret.use_vault_provider
+  use_custom_vault_policy = var.postgres_vault_secret.use_custom_vault_policy || var.minio_vault_secret.use_custom_vault_policy
   vault_kv_policy_name = jsonencode(
     concat(
       [var.postgres_vault_secret.vault_kv_policy_name],
@@ -25,8 +26,9 @@ data "template_file" "template_nomad_job_hive" {
     datacenters  = local.datacenters
     namespace    = var.nomad_namespace
 
-    use_vault_provider   = local.vault_provider
-    vault_kv_policy_name = local.vault_kv_policy_name
+    use_vault_provider      = local.vault_provider
+    use_custom_vault_policy = local.use_custom_vault_policy
+    vault_kv_policy_name    = local.vault_kv_policy_name
 
     local_docker_image = var.local_docker_image
     image              = var.hive_docker_image # !NB: no affect when `local_docker_image=true`
@@ -51,6 +53,7 @@ data "template_file" "template_nomad_job_hive" {
     postgres_password        = var.postgres_service.password
     ## if creds are provided by vault
     postgres_use_vault_provider      = var.postgres_vault_secret.use_vault_provider
+    postgres_use_custom_vault_policy = var.postgres_vault_secret.use_custom_vault_policy
     postgres_vault_kv_policy_name    = var.postgres_vault_secret.vault_kv_policy_name
     postgres_vault_kv_path           = var.postgres_vault_secret.vault_kv_path
     postgres_vault_kv_field_username = var.postgres_vault_secret.vault_kv_field_username
@@ -63,6 +66,7 @@ data "template_file" "template_nomad_job_hive" {
     minio_secret_key      = var.minio_service.secret_key
     ## if creds are provided by vault
     minio_use_vault_provider        = var.minio_vault_secret.use_vault_provider
+    minio_use_custom_vault_policy   = var.minio_vault_secret.use_custom_vault_policy
     minio_vault_kv_policy_name      = var.minio_vault_secret.vault_kv_policy_name
     minio_vault_kv_path             = var.minio_vault_secret.vault_kv_path
     minio_vault_kv_field_access_key = var.minio_vault_secret.vault_kv_field_access_key

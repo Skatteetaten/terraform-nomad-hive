@@ -102,6 +102,7 @@ variable "minio_service" {
 variable "minio_vault_secret" {
   type = object({
     use_vault_provider        = bool
+    use_custom_vault_policy   = bool
     vault_kv_policy_name      = string
     vault_kv_path             = string
     vault_kv_field_access_key = string
@@ -110,6 +111,7 @@ variable "minio_vault_secret" {
   description = "Set of properties to be able to fetch secret from vault"
   default = {
     use_vault_provider        = false
+    use_custom_vault_policy   = false
     vault_kv_policy_name      = "kv-secret"
     vault_kv_path             = "secret/path/to/minio/creds"
     vault_kv_field_access_key = "access_key"
@@ -132,6 +134,7 @@ variable "postgres_service" {
 variable "postgres_vault_secret" {
   type = object({
     use_vault_provider      = bool
+    use_custom_vault_policy = bool
     vault_kv_policy_name    = string
     vault_kv_path           = string
     vault_kv_field_username = string
@@ -140,6 +143,7 @@ variable "postgres_vault_secret" {
   description = "Set of properties to be able to fetch secret from vault"
   default = {
     use_vault_provider      = false
+    use_custom_vault_policy = false
     vault_kv_policy_name    = "kv-secret"
     vault_kv_path           = "secret/path/to/postgres/creds"
     vault_kv_field_username = "username"

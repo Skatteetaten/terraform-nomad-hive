@@ -106,9 +106,11 @@ job "${service_name}" {
       driver = "docker"
 
 %{ if use_vault_provider }
-      vault {
-        policies = ${vault_kv_policy_name}
-      }
+      % { if use_custom_vault_policy }
+        vault {
+          policies = ${vault_kv_policy_name}
+        }
+      % { endif }
 %{ endif }
 
 %{ if local_docker_image }

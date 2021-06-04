@@ -107,9 +107,9 @@ In the examples, intentions are created in the Ansible playboook [00_create_inte
 | resource\_proxy | Resource allocations for proxy | obj(number, number) | { <br> cpu = 200, <br> memory = 128} <br> | no |
 | hive\_bucket | Hive requires minio buckets | obj(string, string) |  { <br> default = string, <br> hive = string <br> } | no |
 | minio\_service | Minio data-object contains service_name, port, access_key and secret_key | obj(string, number, string, string) | - | no |
-| minio\_vault\_secret | Minio data-object contains vault related information to fetch credentials | obj(bool, string, string, string, string) | { <br> use_vault_provider = false, <br> vault_kv_policy_name = "kv-secret", <br> vault_kv_path = "secret/path/to/minio/creds", <br> vault_kv_field_access_key = "access_key", <br> vault_kv_field_secret_key = "secret_key" <br> } | no |
+| minio\_vault\_secret | Minio data-object contains vault related information to fetch credentials | obj(bool, bool, string, string, string, string) | { <br> use_vault_provider = false, <br> use_custom_vault_policy = false, <br> vault_kv_policy_name = "kv-secret", <br> vault_kv_path = "secret/path/to/minio/creds", <br> vault_kv_field_access_key = "access_key", <br> vault_kv_field_secret_key = "secret_key" <br> } | no |
 | postgres\_service | Postgres data-object contains service_name, port, database_name, username and password | obj(string, number, string, string, string) |  | no |
-| postgres\_vault\_secret | Postgres data-object contains vault related information to fetch credentials | obj(bool, string, string, string, string) | { <br> use_vault_provider = false, <br> vault_kv_policy_name = "kv-secret", <br> vault_kv_path = "secret/path/to/postgres/creds", <br> vault_kv_field_username = "username", <br> vault_kv_field_password = "password" <br> } | no |
+| postgres\_vault\_secret | Postgres data-object contains vault related information to fetch credentials | obj(bool, bool, string, string, string, string) | { <br> use_vault_provider = false, <br> use_custom_vault_policy = false, <br> vault_kv_policy_name = "kv-secret", <br> vault_kv_path = "secret/path/to/postgres/creds", <br> vault_kv_field_username = "username", <br> vault_kv_field_password = "password" <br> } | no |
 
 ## Outputs
 | Name | Description | Type |
@@ -149,6 +149,7 @@ module "minio" {
   secret_key = "minio123"
   vault_secret = {
     use_vault_provider          = false,
+    use_custom_vault_policy     = false,
     vault_kv_policy_name        = "",
     vault_kv_path               = "",
     vault_kv_field_access_key   = "",
@@ -181,6 +182,7 @@ module "postgres" {
   container_port  = 5432
   vault_secret = {
     use_vault_provider      = false,
+    use_custom_vault_policy = false,
     vault_kv_policy_name    = "",
     vault_kv_path           = "",
     vault_kv_field_username = "",
