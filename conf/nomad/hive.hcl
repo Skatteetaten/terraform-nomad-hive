@@ -105,12 +105,10 @@ job "${service_name}" {
     task "metastoreserver" {
       driver = "docker"
 
-%{ if use_vault_provider }
-      % { if use_custom_vault_policy }
-        vault {
-          policies = ${vault_kv_policy_name}
-        }
-      % { endif }
+%{ if use_vault_provider && use_custom_vault_policy }
+      vault {
+        policies = ${vault_kv_policy_name}
+      }
 %{ endif }
 
 %{ if local_docker_image }
