@@ -105,7 +105,8 @@ module "hive" {
     secret_key   = ""  # will be ignored > minio_vault_secret.use_vault_provider = true
   }
   minio_vault_secret = {
-    use_vault_provider        = true
+    use_vault_provider        = true,
+    use_custom_vault_policy   = true,
     vault_kv_policy_name      = "kv-secret",
     vault_kv_path             = "secret/data/random-string/minio",
     vault_kv_field_access_key = "access_key"
@@ -122,6 +123,7 @@ module "hive" {
   }
   postgres_vault_secret = {
     use_vault_provider      = true,
+    use_custom_vault_policy = true,
     vault_kv_policy_name    = "kv-secret",
     vault_kv_path           = "secret/data/random-string/postgres",
     vault_kv_field_username = "username",
